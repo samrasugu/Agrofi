@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "653200103053",
+    "project_id": "agrofi",
+    "storage_bucket": "agrofi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653200103053:android:3e9b03787238e7448b34c4",
+        "android_client_info": {
+          "package_name": "farm.agrofi.agrofi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653200103053-h5c2d7kiceusst3iljlogonjbooc9gpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJPCY9PoPP-Jc3RepBpdutSnQW6W1tgzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653200103053-h5c2d7kiceusst3iljlogonjbooc9gpk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "653200103053-ukdimbs6a9lnfm5hhglbl1b8arrnjf4g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "africa.agrofi.agrofi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

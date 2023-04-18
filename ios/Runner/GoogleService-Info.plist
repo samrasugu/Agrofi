@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>653200103053-ca8o892i9a4a5790gm4iiai5n8okm8u3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.653200103053-ca8o892i9a4a5790gm4iiai5n8okm8u3</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>653200103053-36271qdu3h53838cd8sqjdqgoc84hp8e.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCYVkYXegXl0WPwGPZjuNvccVmX0BlQE_4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>653200103053</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>farm.agrofi.agrofi</string>
+	<key>PROJECT_ID</key>
+	<string>agrofi</string>
+	<key>STORAGE_BUCKET</key>
+	<string>agrofi.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:653200103053:ios:7d731236f6383fd08b34c4</string>
+</dict>
+</plist>
