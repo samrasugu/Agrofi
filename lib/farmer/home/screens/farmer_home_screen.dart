@@ -2,11 +2,8 @@ import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/home/widgets/active_booking_tile.dart';
 import 'package:agrofi/farmer/home/widgets/custom_large_button.dart';
 import 'package:agrofi/farmer/home/widgets/pending_booking.dart';
-import 'package:agrofi/farmer/loans/screens/loans_main_screen.dart';
 import 'package:agrofi/farmer/loans/screens/request_loan_screen.dart';
-import 'package:agrofi/farmer/shop/screens/shop_bottombar_screen.dart';
 import 'package:agrofi/farmer/tractor_bookings/screens/book_tractor_screen.dart';
-import 'package:agrofi/farmer/home/widgets/custom_icon.dart';
 import 'package:agrofi/farmer/home/widgets/loan_balance.dart';
 import 'package:agrofi/farmer/notifications/screens/notifications_screen.dart';
 import 'package:agrofi/farmer/settings/screens/settings_screen.dart';
@@ -64,14 +61,14 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
                   color: Colors.black,
                 ),
               ),
-              Text(
-                "Agrofi",
-                style: GoogleFonts.julee(
-                  fontSize: 30,
-                  color: GlobalVariables.primaryColor,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+              // Text(
+              //   "Agrofi",
+              //   style: GoogleFonts.julee(
+              //     fontSize: 30,
+              //     color: GlobalVariables.primaryColor,
+              //     fontWeight: FontWeight.w700,
+              //   ),
+              // ),
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(

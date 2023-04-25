@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://192.168.43.233:3000';
-// String uri = 'http://192.168.8.100:3000';
+// String uri = 'http://192.168.43.233:3000';
+String uri = 'http://192.168.8.100:3000';
 // String uri = 'http://192.168.142.1:3000';
 // String uri = 'http://192.168.206.142:3000';
+// String uri = 'http://192.168.192.1:3000';
 
 class GlobalVariables {
   // static const primaryColor = Color.fromRGBO(8, 145, 4, 1);

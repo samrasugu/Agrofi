@@ -31,7 +31,7 @@ class _UserTypeSelectionScreenState extends State<UserTypeSelectionScreen> {
             Text(
               "Welcome to Agrofi ${user.firstName}",
               textAlign: TextAlign.center,
-              style: GoogleFonts.julee(
+              style: const TextStyle(
                 fontSize: 60,
                 color: GlobalVariables.primaryColor,
                 fontWeight: FontWeight.w800,

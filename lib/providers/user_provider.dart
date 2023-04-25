@@ -22,7 +22,7 @@ class UserProvider extends ChangeNotifier {
     status: '', 
     isApproved: false,
     isOnline: false,
-    accountBalance: 0, 
+    accountBalance: 0.0, 
     deviceToken: '',
     token: '', 
     cart: [],
@@ -37,6 +37,11 @@ class UserProvider extends ChangeNotifier {
 
   void setUserFromModel(UserModel user) {
     _user = user;
+    notifyListeners();
+  }
+
+  void setLoanBalance(double balance) {
+    _user.accountBalance = balance;
     notifyListeners();
   }
 }

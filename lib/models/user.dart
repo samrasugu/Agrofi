@@ -20,7 +20,7 @@ class UserModel {
   final String status;
   final bool isApproved;
   final bool isOnline;
-  final int accountBalance;
+  double accountBalance;
   final String deviceToken;
   final String token;
   final List<dynamic> cart;
@@ -101,7 +101,7 @@ class UserModel {
       status: map['status'] ?? '', 
       isApproved: map['isApproved'] ?? false,
       isOnline: map['isOnline'] ?? false,
-      accountBalance: map['accountBalance'] ?? 0, 
+      accountBalance: map['balance'] ?? 0.0, 
       deviceToken: map['deviceToken'] ?? '',
       token: map['token'] ?? '', 
       cart: List<Map<String, dynamic>>.from(
@@ -136,7 +136,7 @@ class UserModel {
     String? status,
     bool? isApproved,
     bool? isOnline,
-    int? accountBalance,
+    double? accountBalance,
     String? deviceToken,
     String? token,
     List<dynamic>? cart,

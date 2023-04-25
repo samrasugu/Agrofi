@@ -4,7 +4,6 @@ import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/auth/services/auth_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -66,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(
                   height: 90,
-                  width: MediaQuery.of(context).size.width * 0.7,
+                  width: MediaQuery.of(context).size.width * 0.8,
                   child: const Image(
                     image: AssetImage('assets/agrofi_logo.png'),
                     fit: BoxFit.cover,

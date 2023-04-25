@@ -56,28 +56,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
             padding: const EdgeInsets.all(25.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
-                Text(
-                  "Agrofi",
-                  style: GoogleFonts.julee(
-                    fontSize: 60,
-                    color: GlobalVariables.primaryColor,
-                    fontWeight: FontWeight.w800,
+                SizedBox(
+                  height: 90,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: const Image(
+                    image: AssetImage('assets/agrofi_logo.png'),
+                    fit: BoxFit.cover,
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  "Register",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
+                // const Text(
+                //   "Register",
+                //   style: TextStyle(color: Colors.black, fontSize: 20),
+                // ),
+                // const SizedBox(
+                //   height: 20,
+                // ),
                 Form(
                   key: _signUpFormKey,
                   child: Column(
