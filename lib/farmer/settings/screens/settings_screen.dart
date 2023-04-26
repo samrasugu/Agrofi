@@ -27,12 +27,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
           "Settings",
           style: TextStyle(
             fontSize: 16,
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.w700,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: GlobalVariables.primaryColor,
         elevation: 1,
         iconTheme: const IconThemeData(
           color: Colors.black,

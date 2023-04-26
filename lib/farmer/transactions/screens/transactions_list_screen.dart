@@ -3,7 +3,7 @@ import 'package:agrofi/farmer/home/widgets/recent_transactions.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsListScreen extends StatefulWidget {
-  static const String routeName ="/transactions-list-screen";
+  static const String routeName = "/transactions-list-screen";
   const TransactionsListScreen({super.key});
 
   @override
@@ -15,16 +15,25 @@ class _TransactionsListScreenState extends State<TransactionsListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Transaction History", style: TextStyle(fontSize: 18),),
+        title: const Text(
+          "Transaction History",
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
         centerTitle: true,
+        elevation: 1.0,
         backgroundColor: GlobalVariables.primaryColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 5,
+          ),
           child: Column(
             children: const [
-              RecentTransactions()
+              RecentTransactions(),
             ],
           ),
         ),
