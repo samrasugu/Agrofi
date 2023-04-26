@@ -3,6 +3,7 @@ import 'package:agrofi/farmer/booking/screens/booking_details_screen.dart';
 import 'package:agrofi/farmer/home/services/home_service.dart';
 import 'package:agrofi/models/booking.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class PendingBookingsListView extends StatefulWidget {
   const PendingBookingsListView({super.key});
@@ -88,44 +89,102 @@ class _PendingBookingsListViewState extends State<PendingBookingsListView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              const Text(
-                                "Tractor Owner's Name:",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: "Ordered on: ",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 7,
-                              ),
-                              Text(
-                                booking.tractorOwner?.firstName ?? "Hello",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: GlobalVariables.primaryColor,
-                                  fontWeight: FontWeight.w400,
+                                const TextSpan(
+                                  text: " ",
                                 ),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            "Date expected: ${booking.dateExpected}",
-                          ),
-                          const Text(
-                            "Status",
-                            style: TextStyle(
-                              color: Colors.black54,
+                                TextSpan(
+                                  text: DateFormat.yMMMMEEEEd().format(
+                                    DateTime.fromMillisecondsSinceEpoch(
+                                      booking.orderedAt,
+                                    ),
+                                  ),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: GlobalVariables.primaryColor,
+                                  ),
+                                ),
+                              ],
                             ),
-                          )
+                          ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: "Expected on: ",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const TextSpan(
+                                  text: " ",
+                                ),
+                                TextSpan(
+                                  text: booking.dateExpected,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: GlobalVariables.primaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: "Status: ",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                                const TextSpan(
+                                  text: " ",
+                                ),
+                                TextSpan(
+                                  text: booking.status == 0
+                                      ? "Pending"
+                                      : booking.status == 1
+                                          ? "Accepted"
+                                          : "Rejected",
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: GlobalVariables.primaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
                 );
               } else {
-                return const SizedBox.shrink();
+                return Container(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  decoration: const BoxDecoration(
+                    color: GlobalVariables.greyBackGround,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        10,
+                      ),
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text("No pending bookings"),
+                  ),
+                );
               }
             },
           );

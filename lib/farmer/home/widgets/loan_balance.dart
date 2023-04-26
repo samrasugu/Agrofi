@@ -60,7 +60,7 @@ class _LoanBalanceState extends State<LoanBalance> {
                 height: 20,
               ),
               Text(
-                "KES ${user.accountBalance}",
+                "KES ${user.accountBalance.toDouble()}",
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,

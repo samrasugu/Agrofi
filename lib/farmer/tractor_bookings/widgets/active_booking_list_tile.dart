@@ -16,36 +16,51 @@ class _ActiveTractorBookingState extends State<ActiveTractorBooking> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.person_2_rounded),
-          trailing: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("KES 1200",
-              style: TextStyle(
-                color: Colors.red,
-                fontWeight: FontWeight.w600
-              ),),
-              const SizedBox(height: 5,),
-              Text(currentTime, 
-              style: TextStyle(
-                color: Colors.grey.shade700,
-              ),)
-            ],
+      leading: const Icon(
+        Icons.person_2_rounded,
+      ),
+      trailing: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            "KES 1200",
+            style: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Kilimo Tractors",
-              style: TextStyle(
-                fontWeight: FontWeight.w600
-              ),),
-              const SizedBox(height: 5,),
-              Text(date, style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey.shade700
-              ),),
-            ],
+          const SizedBox(
+            height: 5,
           ),
+          Text(
+            currentTime,
+            style: TextStyle(
+              color: Colors.grey.shade700,
+            ),
+          ),
+        ],
+      ),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Kilimo Tractors",
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            date,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.grey.shade700,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

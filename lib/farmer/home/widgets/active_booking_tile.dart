@@ -1,7 +1,6 @@
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/booking/screens/booking_details_screen.dart';
 import 'package:agrofi/farmer/home/services/home_service.dart';
-// import 'package:agrofi/features/home/services/home_services.dart';
 import 'package:agrofi/models/booking.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -130,7 +129,24 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                   ),
                 );
               } else {
-                return const SizedBox.shrink();
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    decoration: const BoxDecoration(
+                      color: GlobalVariables.greyBackGround,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                          10,
+                        ),
+                      ),
+                    ),
+                    child: const Center(
+                      child: Text("No active bookings"),
+                    ),
+                  ),
+                );
               }
             },
           );

@@ -58,15 +58,26 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0, vertical: 7.0),
+                    horizontal: 10.0,
+                    vertical: 7.0,
+                  ),
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.9,
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(
+                      10.0,
+                    ),
                     height: 100,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      border: Border.all(color: Colors.black26, width: 1),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(
+                          15,
+                        ),
+                      ),
+                      border: Border.all(
+                        color: Colors.black26,
+                        width: 1,
+                      ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +88,9 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                             const Text(
                               "Farmer's Name:",
                               style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w600),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                             const SizedBox(
                               width: 7,

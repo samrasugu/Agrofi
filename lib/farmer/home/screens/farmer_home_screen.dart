@@ -48,27 +48,14 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    SettingsScreen.routeName,
-                    arguments: {},
-                  );
-                },
-                child: const Icon(
-                  Icons.settings,
+              Text(
+                '${greeting()}, ${user.firstName}',
+                style: const TextStyle(
                   color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              // Text(
-              //   "Agrofi",
-              //   style: GoogleFonts.julee(
-              //     fontSize: 30,
-              //     color: GlobalVariables.primaryColor,
-              //     fontWeight: FontWeight.w700,
-              //   ),
-              // ),
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(
@@ -80,6 +67,7 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
                 child: const Icon(
                   Icons.notifications_rounded,
                   color: Colors.black,
+                  size: 28,
                 ),
               )
             ],
@@ -89,34 +77,14 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
       backgroundColor: GlobalVariables.backGrooundColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 1,
+          ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${greeting()}, ${user.firstName}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              const SizedBox(
-                height: 15,
-              ),
-
               const Padding(
                 padding: EdgeInsets.all(2.0),
                 child: LoanBalance(),

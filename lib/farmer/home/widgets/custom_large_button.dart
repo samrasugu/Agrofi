@@ -13,19 +13,38 @@ class CustomLargeButton extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: MediaQuery.of(context).size.height * 0.18,
+          height: MediaQuery.of(context).size.height * 0.15,
           width: MediaQuery.of(context).size.width * 0.425,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.grey[100],
+            color: Colors.white,
+            boxShadow:  [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 2,
+                offset: const Offset(0, 3), // changes position of shadow
+              ),
+            ],
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(
-                icon,
-                size: 38,
-                color: GlobalVariables.primaryColor,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  color: Colors.white,
+                  border: Border.all(
+                    color: GlobalVariables.greyBackGround,
+                    width: 2,
+                  ),
+                ),
+                padding: const EdgeInsets.all(10),
+                child: Icon(
+                  icon,
+                  size: 38,
+                  color: GlobalVariables.primaryColor,
+                ),
               ),
               Text(
                 maintext,
@@ -33,15 +52,6 @@ class CustomLargeButton extends StatelessWidget {
                   fontSize: 18,
                   color: Colors.black,
                   fontWeight: FontWeight.w600
-                ),
-              ),
-              Text(
-                subtext,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w100
                 ),
               ),
             ],

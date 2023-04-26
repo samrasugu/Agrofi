@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:agrofi/common/widgets/snack_bar.dart';
 import 'package:agrofi/auth/screens/login_screen.dart';
 import 'package:agrofi/constants/error_handling.dart';
@@ -19,11 +17,12 @@ class AccountServices {
     double balance = 0.0;
     try {
       http.Response res = await http.get(
-          Uri.parse('$uri/api/farmer/getloanbalance'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': userProvider.user.token,
-          });
+        Uri.parse('$uri/api/farmer/getloanbalance'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+      );
 
       if (context.mounted) {
         httpErrorHandle(
@@ -48,11 +47,17 @@ class AccountServices {
     try {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
-      await sharedPreferences.setString('x-auth-token', '');
+      await sharedPreferences.setString(
+        'x-auth-token',
+        '',
+      );
       if (context.mounted) {
         showSnackBar(context, "Logout successful");
         Navigator.pushNamedAndRemoveUntil(
-            context, LoginScreen.routeName, (route) => false);
+          context,
+          LoginScreen.routeName,
+          (route) => false,
+        );
       }
     } catch (e) {
       showSnackBar(context, e.toString());
