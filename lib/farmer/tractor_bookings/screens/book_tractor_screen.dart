@@ -55,15 +55,18 @@ class _BookTractorScreenState extends State<BookTractorScreen> {
             Container(
               padding: const EdgeInsets.all(15.0),
               child: CalendarDatePicker(
-                  initialDate: currentDate,
-                  firstDate: DateTime(2023),
-                  lastDate: DateTime(2024),
-                  onDateChanged: (picked) {
-                    setState(() {
+                initialDate: currentDate,
+                firstDate: DateTime(2023),
+                lastDate: DateTime(2024),
+                onDateChanged: (picked) {
+                  setState(
+                    () {
                       selectedDate =
                           '${picked.day}/${picked.month}/${picked.year}';
-                    });
-                  }),
+                    },
+                  );
+                },
+              ),
             ),
             // const SizedBox(height: 20,),
             Padding(
@@ -77,29 +80,32 @@ class _BookTractorScreenState extends State<BookTractorScreen> {
                     builder: (ctx) => AlertDialog(
                       title: const Text('Confirm Booking'),
                       content: Text(
-                          'Do you wish to book for a tractor on: $selectedDate'),
+                        'Do you wish to book for a tractor on: $selectedDate',
+                      ),
                       actions: <Widget>[
                         TextButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                            },
-                            child: const Text("Cancel")),
+                          onPressed: () {
+                            Navigator.of(ctx).pop();
+                          },
+                          child: const Text(
+                            "Cancel",
+                          ),
+                        ),
                         TextButton(
-                            onPressed: () {
-                              // Call function to book -- store to db
-                              if (selectedDate == "") {
-                                Navigator.of(ctx).pop();
-                                showSnackBar(context, "Please select a date");
-                              } else if (user.isApproved == false) {
-                                Navigator.of(ctx).pop();
-                                showSnackBar(
-                                    context, "You have not been approved");
-                              } else {
-                                bookTractor();
-                                Navigator.of(ctx).pop();
-                              }
-                            },
-                            child: const Text("Confirm"))
+                          onPressed: () {
+                            // Call function to book -- store to db
+                            if (selectedDate == "") {
+                              Navigator.of(ctx).pop();
+                              showSnackBar(context, "Please select a date");
+                            } else {
+                              bookTractor();
+                              Navigator.of(ctx).pop();
+                            }
+                          },
+                          child: const Text(
+                            "Confirm",
+                          ),
+                        )
                       ],
                     ),
                   );
