@@ -1,5 +1,4 @@
 import 'package:agrofi/constants/global_variables.dart';
-import 'package:agrofi/farmer/home/widgets/custom_icon.dart';
 import 'package:agrofi/farmer/home/widgets/custom_large_button.dart';
 import 'package:agrofi/farmer/loans/screens/request_loan_screen.dart';
 import 'package:agrofi/farmer/loans/widgets/current_loan_tile.dart';

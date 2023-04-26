@@ -4,6 +4,7 @@ import 'package:agrofi/common/widgets/snack_bar.dart';
 import 'package:agrofi/auth/screens/login_screen.dart';
 import 'package:agrofi/constants/error_handling.dart';
 import 'package:agrofi/constants/global_variables.dart';
+import 'package:agrofi/models/loan.dart';
 import 'package:agrofi/models/transaction.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,24 @@ import 'package:http/http.dart' as http;
 
 class AccountServices {
   // get loan balance
-  Future<double> getLoanBalance({
+  Future<Loan> getCurrentLoan({
     required BuildContext context,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    double balance = 0.0;
+    Loan loan = Loan(
+      balance: 0.0,
+      activationData: '',
+      amount: 0.0,
+      dueDate: 0,
+      id: '',
+      isCurrent: false,
+      issueDate: 0,
+      principal: 0.0,
+      status: '',
+      requestDate: 0,
+      userID: '',
+      voucherId: '',
+    );
     try {
       http.Response res = await http.get(
         Uri.parse('$uri/api/farmer/getloanbalance'),
@@ -32,8 +46,15 @@ class AccountServices {
           response: res,
           context: context,
           onSuccess: () {
-            balance = double.parse(res.body);
-            userProvider.setLoanBalance(balance);
+            // balance = double.parse(res.body);
+              loan = Loan.fromJson(
+                jsonEncode(
+                  jsonDecode(
+                    res.body,
+                  ),
+                ),
+              );
+            userProvider.setLoanBalance(loan.balance);
           },
         );
       }
@@ -42,7 +63,7 @@ class AccountServices {
         showSnackBar(context, e.toString());
       }
     }
-    return balance;
+    return loan;
   }
 
   // fetch recent transactions
@@ -51,7 +72,7 @@ class AccountServices {
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Transaction> transactions = [];
-    // try {
+    try {
       http.Response res = await http.get(
         Uri.parse('$uri/api/farmer/fetchMyTransactions'),
         headers: <String, String>{
@@ -59,8 +80,6 @@ class AccountServices {
           'x-auth-token': userProvider.user.token,
         },
       );
-
-      print(res.body);
 
       if (context.mounted) {
         httpErrorHandle(
@@ -81,11 +100,11 @@ class AccountServices {
           },
         );
       }
-    // } catch (e) {
-      // if (context.mounted) {
-        // showSnackBar(context, e.toString());
-      // }
-    // }
+    } catch (e) {
+      if (context.mounted) {
+        showSnackBar(context, e.toString());
+      }
+    }
     return transactions;
   }
 

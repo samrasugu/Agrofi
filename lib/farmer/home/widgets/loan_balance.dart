@@ -1,5 +1,6 @@
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/settings/services/account_services.dart';
+import 'package:agrofi/models/loan.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,10 +13,10 @@ class LoanBalance extends StatefulWidget {
 }
 
 class _LoanBalanceState extends State<LoanBalance> {
-  double? loanbalance;
-
   // fetch loan balance
   final AccountServices accountServices = AccountServices();
+
+  late Loan loan;
 
   @override
   void initState() {
@@ -24,12 +25,10 @@ class _LoanBalanceState extends State<LoanBalance> {
   }
 
   Future<void> fetchLoanBalance() async {
-    final user = Provider.of<UserProvider>(context, listen: false).user;
-    final response = await accountServices.getLoanBalance(context: context);
-    setState(() {
-      loanbalance = response;
-    });
+    await accountServices.getCurrentLoan(context: context);
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
