@@ -19,7 +19,7 @@ class UserModel {
   final String tractorOwnerId;
   final String status;
   final bool isApproved;
-  final bool isOnline;
+  bool isOnline;
   double accountBalance;
   final String deviceToken;
   final String token;

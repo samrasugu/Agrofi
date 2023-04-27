@@ -10,15 +10,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
+class TractorOwnerHomeScreen extends StatefulWidget {
   static const String routeName = "/home-screen";
-  const HomeScreen({super.key});
+  const TractorOwnerHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TractorOwnerHomeScreen> createState() => _TractorOwnerHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TractorOwnerHomeScreenState extends State<TractorOwnerHomeScreen> {
   String greeting() {
     var hour = DateTime.now().hour;
     if (hour < 12) {
@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
+    final user = Provider.of<UserProvider>(context, listen: true).user;
     return Scaffold(
       backgroundColor: GlobalVariables.backGrooundColor,
       appBar: PreferredSize(
@@ -53,25 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    SettingsScreen.routeName,
-                    arguments: {},
-                  );
-                },
-                child: const Icon(
-                  Icons.settings,
+              Text(
+                '${greeting()}, ${user.lastName}',
+                style: const TextStyle(
                   color: Colors.black,
-                ),
-              ),
-              const Text(
-                "Agrofi",
-                style: TextStyle(
-                  fontSize: 30,
-                  color: GlobalVariables.primaryColor,
-                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               GestureDetector(
@@ -85,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Icon(
                   Icons.notifications_rounded,
                   color: Colors.black,
+                  size: 28,
                 ),
               )
             ],
@@ -93,31 +81,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 2,
+          ),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${greeting()} ${user.lastName}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              const SizedBox(
-                height: 20,
-              ),
-
               const TotalEarnings(),
 
               const SizedBox(
@@ -130,50 +99,66 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        const Text(
-                          "Status:",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        // Text(
-                        //   user.isOnline == false ? "Offline" : "Online",
-                        //   style: TextStyle(
-                        //     fontSize: 17,
-                        //     color: user.isOnline == false
-                        //         ? Colors.red
-                        //         : GlobalVariables.primaryColor,
-                        //   ),
-                        // ),
-                      ],
+                    Text.rich(
+                      TextSpan(
+                        text: "Status: ",
+                        style: const TextStyle(fontSize: 20),
+                        children: [
+                          TextSpan(
+                            text: user.isOnline == false
+                                ? "Offline\n"
+                                : "Online\n",
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: user.isOnline == false
+                                  ? Colors.red
+                                  : GlobalVariables.primaryColor,
+                            ),
+                          ),
+                          TextSpan(
+                            text: user.isOnline == false
+                                ? "(Tap to go online)"
+                                : "(Tap to go offline)",
+                            style: const TextStyle(
+                              fontSize: 17,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    // CupertinoSwitch(
-                    //   value: user.isOnline,
-                    //   onChanged: (value) {
-                    //     setState(
-                    //       () {
-                    //         user.isOnline = value;
-                    //         homeService.changeStatus(
-                    //           context: context,
-                    //           status: value,
-                    //         );
-                    //       },
-                    //     );
-                    //   },
-                    // ),
+                    CupertinoSwitch(
+                      value: user.isOnline,
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            user.isOnline = value;
+                            homeService.changeStatus(
+                              context: context,
+                              status: value,
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
 
               // current active booking
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10.0,
+                  horizontal: 8,
+                ),
                 child: Row(
                   children: const [
                     Text(
-                      "Your active booking(s):",
-                      style: TextStyle(fontSize: 18.0),
+                      "Active bookings:",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -182,13 +167,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // current booking requests
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8.0,
+                  horizontal: 8,
+                ),
                 child: Row(
                   children: const [
                     Text(
                       "Requests:",
-                      style: TextStyle(fontSize: 18.0),
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),

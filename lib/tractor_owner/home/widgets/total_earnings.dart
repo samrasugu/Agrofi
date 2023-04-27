@@ -18,29 +18,17 @@ class _TotalEarningsState extends State<TotalEarnings> {
       children: [
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.2,
           padding: const EdgeInsets.all(20),
           decoration: const BoxDecoration(
             color: GlobalVariables.primaryColor,
             borderRadius: BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(10),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: GlobalVariables.greyBackGround,
-                offset: Offset(5.0, 5.0),
-                blurRadius: 2.0,
-                spreadRadius: 2.0,
-              ),
-              BoxShadow(
-                color: GlobalVariables.greyBackGround,
-                offset: Offset(0, 0),
-                blurRadius: 0.0,
-                spreadRadius: 0.0,
-              ),
-            ],
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
                 "Total Earnings",
@@ -52,14 +40,14 @@ class _TotalEarningsState extends State<TotalEarnings> {
               const SizedBox(
                 height: 20,
               ),
-              // Text(
-              //   "KES ${user.totalEarnings}",
-              //   style: const TextStyle(
-              //     color: Colors.white,
-              //     fontWeight: FontWeight.w500,
-              //     fontSize: 20,
-              //   ),
-              // ),
+              Text(
+                "KES ${user.accountBalance}",
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 30,
+                ),
+              ),
             ],
           ),
         ),
