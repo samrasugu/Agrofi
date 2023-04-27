@@ -72,7 +72,7 @@ class _PendingBookingsListViewState extends State<PendingBookingsListView> {
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.9,
                       padding: const EdgeInsets.all(10.0),
-                      height: 100,
+                      height: 120,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: const BorderRadius.all(

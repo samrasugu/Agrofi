@@ -15,7 +15,7 @@ class AnimationLoadingScreen extends StatelessWidget {
           children: [
             SizedBox(
               height: 90,
-              width: MediaQuery.of(context).size.width * 0.7,
+              width: MediaQuery.of(context).size.width * 0.8,
               child: const Image(
                 image: AssetImage('assets/agrofi_logo.png'),
                 fit: BoxFit.cover,

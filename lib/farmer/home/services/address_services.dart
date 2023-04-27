@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:agrofi/common/widgets/snack_bar.dart';
 import 'package:agrofi/constants/error_handling.dart';
 import 'package:agrofi/constants/global_variables.dart';
-import 'package:agrofi/models/user.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +37,7 @@ class AddressServices {
           response: res,
           context: context,
           onSuccess: () {
-          userProvider.setUser(res.body);
+            userProvider.setUser(res.body);
             showSnackBar(context, 'Address changed successfully');
             Navigator.pop(context);
           },

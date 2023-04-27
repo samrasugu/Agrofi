@@ -26,11 +26,17 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
-     return Scaffold(
+    return Scaffold(
       backgroundColor: GlobalVariables.greyBackGround,
       appBar: AppBar(
-        title: const Text("Profile",
-        style: TextStyle(fontSize: 16),),
+        backgroundColor: GlobalVariables.primaryColor,
+        title: const Text(
+          "Profile",
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         elevation: 0,
       ),
@@ -38,47 +44,64 @@ class _AccountScreenState extends State<AccountScreen> {
         child: Column(
           children: [
             // const SizedBox(height: 10,),
-          //   Center(
-          //   child: Column(
-          //     children: [
-          //       GestureDetector(
-          //         onTap: (){
-          //           Navigator.pushNamed(context, AccountScreen.routeName, arguments: {});
-          //         },
-          //         child: const CircleAvatar(
-          //           radius: 60,
-          //           backgroundColor: Colors.white,
-          //           backgroundImage: AssetImage('assets/icons/usericon.png'
-          //           ),
-          //         ),
-          //       ),
-          //       const SizedBox(height: 10,),
-          //       const Text("Sam Rasugu",
-          //       style: TextStyle(
-          //         fontSize: 18,
-          //         fontWeight: FontWeight.w700
-          //         ),
-          //       )
-          //     ],
-          //   ),
-          // ),
-          // user data
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                CustomDisabledTextField(controller: firstNameController, hintText: "${user.firstName} ${user.lastName}", maxLines: 1),
-                CustomDisabledTextField(controller: phoneNumberController, hintText: user.phoneNumber, maxLines: 1),
-                CustomDisabledTextField(controller: idNumberController, hintText: user.idNumber, maxLines: 1),
-                CustomDisabledTextField(controller: countyController, hintText: user.county, maxLines: 1),
-                CustomDisabledTextField(controller: subCountyController, hintText: user.subCounty, maxLines: 1),
-                CustomDisabledTextField(controller: villageController, hintText: user.village, maxLines: 1),
-      
-              ],
-            ),
-          )
+            //   Center(
+            //   child: Column(
+            //     children: [
+            //       GestureDetector(
+            //         onTap: (){
+            //           Navigator.pushNamed(context, AccountScreen.routeName, arguments: {});
+            //         },
+            //         child: const CircleAvatar(
+            //           radius: 60,
+            //           backgroundColor: Colors.white,
+            //           backgroundImage: AssetImage('assets/icons/usericon.png'
+            //           ),
+            //         ),
+            //       ),
+            //       const SizedBox(height: 10,),
+            //       const Text("Sam Rasugu",
+            //       style: TextStyle(
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.w700
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
+            // user data
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  CustomDisabledTextField(
+                      controller: firstNameController,
+                      hintText: "${user.firstName} ${user.lastName}",
+                      maxLines: 1),
+                  CustomDisabledTextField(
+                      controller: phoneNumberController,
+                      hintText: user.phoneNumber,
+                      maxLines: 1),
+                  CustomDisabledTextField(
+                      controller: idNumberController,
+                      hintText: user.idNumber,
+                      maxLines: 1),
+                  CustomDisabledTextField(
+                      controller: countyController,
+                      hintText: user.county,
+                      maxLines: 1),
+                  CustomDisabledTextField(
+                      controller: subCountyController,
+                      hintText: user.subCounty,
+                      maxLines: 1),
+                  CustomDisabledTextField(
+                      controller: villageController,
+                      hintText: user.village,
+                      maxLines: 1),
+                ],
+              ),
+            )
           ],
-           ),
+        ),
       ),
     );
   }

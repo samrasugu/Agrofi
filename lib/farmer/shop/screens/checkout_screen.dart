@@ -1,7 +1,7 @@
 import 'package:agrofi/common/widgets/custom_button.dart';
 import 'package:agrofi/constants/global_variables.dart';
-import 'package:agrofi/farmer/home/screens/farmer_bottom_bar_screen.dart';
 import 'package:agrofi/farmer/shop/screens/change_address_screen.dart';
+import 'package:agrofi/farmer/shop/screens/order_successful_screen.dart';
 import 'package:agrofi/farmer/shop/services/shop_services.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -25,18 +25,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       context: context,
       totalSum: totalSum,
     );
-    Navigator.pop(context);
-    // if (context.mounted) {
-    //   Navigator.pushNamed(context, FarmerBottomBarScreen.routeName, arguments: {
-    //     'index': 2,
-    //   });
-    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context, listen: true).user;
-    // final user = context.watch<UserProvider>().user;
+    final user = Provider.of<UserProvider>(context, listen: false).user;
+    final userLocation = context.watch<UserProvider>().user;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -47,9 +41,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         ),
         centerTitle: true,
         elevation: 1.0,
-        backgroundColor: GlobalVariables.backGrooundColor,
+        backgroundColor: GlobalVariables.primaryColor,
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       backgroundColor: Colors.white,
@@ -76,8 +70,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 height: 10,
               ),
               Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,-
-                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Icon(
                     Icons.location_on,
@@ -85,7 +77,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   ),
                   // const Spacer(),
                   const SizedBox(
-                    width: 10,
+                    width: 7,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,9 +90,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         ),
                       ),
                       Text(
-                        '${user.village}, ${user.subCounty}, ${user.county}',
+                        '${userLocation.village}, ${userLocation.subCounty}, ${userLocation.county}',
                         style: TextStyle(
-                          fontSize: 17,
+                          fontSize: 16,
                           fontWeight: FontWeight.normal,
                           color: Colors.grey.shade600,
                         ),
@@ -110,7 +102,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   const Spacer(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(70, 40),
+                      minimumSize: const Size(60, 40),
                       backgroundColor: Colors.grey.shade200,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
@@ -243,7 +235,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ),
                   ),
                   Text(
-                    'Ksh ${user.cart.map((e) => e['product']['price'] * e['quantity']).reduce((value, element) => value + element)}',
+                    'Ksh ${user.cart.isNotEmpty ? user.cart.map((e) => e['product']['price'] * e['quantity']).reduce((value, element) => value + element) : 0}',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -266,7 +258,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ),
                   ),
                   Text(
-                    'Ksh ${user.cart.map((e) => e['product']['price'] * e['quantity']).reduce((value, element) => value + element) * 0.05}',
+                    'Ksh ${user.cart.isNotEmpty ? user.cart.map((e) => e['product']['price'] * e['quantity']).reduce((value, element) => value + element) * 0.05 : 0}',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -289,7 +281,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ),
                   ),
                   Text(
-                    'Ksh ${user.cart.map((e) => e['product']['price'] * e['quantity']).reduce((value, element) => value + element) + user.cart.map((e) => e['product']['price'] * e['quantity']).reduce((value, element) => value + element) * 0.05}',
+                    'Ksh ${user.cart.isNotEmpty ? user.cart.map((e) => e['product']['price'] * e['quantity']).reduce((value, element) => value + element) + user.cart.map((e) => e['product']['price'] * e['quantity']).reduce((value, element) => value + element) * 0.05 : 0}',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,

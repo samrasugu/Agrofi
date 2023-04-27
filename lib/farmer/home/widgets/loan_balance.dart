@@ -26,7 +26,9 @@ class _LoanBalanceState extends State<LoanBalance> {
 
   Future<void> fetchLoanBalance() async {
     await accountServices.getCurrentLoan(context: context);
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override

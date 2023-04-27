@@ -15,9 +15,13 @@ class _RecentActivityScreenState extends State<RecentActivityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: GlobalVariables.primaryColor,
         title: const Text(
           "Recent acivity",
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
         ),
         centerTitle: true,
         elevation: 0,

@@ -28,9 +28,12 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: GlobalVariables.primaryColor,
         title: const Text(
           "Booking details",
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 18,
+          color: Colors.white,
+          ),
         ),
         elevation: 0,
       ),

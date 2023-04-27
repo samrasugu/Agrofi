@@ -58,7 +58,7 @@ class _RecentTransactionsState extends State<RecentTransactions> {
               ),
               child: const Center(
                 child: Text(
-                  'You have no pending bookings',
+                  'You have no recent transactions',
                 ),
               ),
             ),
@@ -81,7 +81,19 @@ class _RecentTransactionsState extends State<RecentTransactions> {
                   ),
                 ),
                 child: ListTile(
-                  leading: const Icon(Icons.person_2_rounded),
+                  leading: Container(
+                    padding: const EdgeInsets.all(
+                      10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Icon(
+                      Icons.person_2_rounded,
+                      color: Colors.black,
+                    ),
+                  ),
                   trailing: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -97,7 +109,9 @@ class _RecentTransactionsState extends State<RecentTransactions> {
                       ),
                       Text(
                         DateFormat.Hms().format(
-                          DateTime.fromMillisecondsSinceEpoch(transaction.date)
+                          DateTime.fromMillisecondsSinceEpoch(
+                            transaction.date,
+                          ),
                         ),
                         style: TextStyle(
                           color: Colors.grey.shade700,
@@ -122,7 +136,9 @@ class _RecentTransactionsState extends State<RecentTransactions> {
                       ),
                       Text(
                         DateFormat.yMMMMd().format(
-                          DateTime.fromMillisecondsSinceEpoch(transaction.date)
+                          DateTime.fromMillisecondsSinceEpoch(
+                            transaction.date,
+                          ),
                         ),
                         style: TextStyle(
                           fontSize: 12,

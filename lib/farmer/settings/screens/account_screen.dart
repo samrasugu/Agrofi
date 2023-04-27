@@ -29,6 +29,7 @@ class _AccountScreenState extends State<AccountScreen> {
     return Scaffold(
       backgroundColor: GlobalVariables.backGrooundColor,
       appBar: AppBar(
+        backgroundColor: GlobalVariables.primaryColor,
         title: const Text("Profile",
         style: TextStyle(fontSize: 16),),
         centerTitle: true,

@@ -10,6 +10,7 @@ import 'package:agrofi/farmer/shop/screens/change_address_screen.dart';
 import 'package:agrofi/farmer/shop/screens/checkout_screen.dart';
 import 'package:agrofi/farmer/shop/screens/cart_screen.dart';
 import 'package:agrofi/farmer/shop/screens/order_details_screen.dart';
+import 'package:agrofi/farmer/shop/screens/order_successful_screen.dart';
 import 'package:agrofi/farmer/shop/screens/product_details_screen.dart';
 import 'package:agrofi/farmer/shop/screens/shop_bottombar_screen.dart';
 import 'package:agrofi/farmer/shop/screens/shop_home_screen.dart';
@@ -170,6 +171,11 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const CheckoutScreen(),
+      );
+    case OrderSuccessScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const OrderSuccessScreen(),
       );
     case ChangeAddressScreen.routeName:
       return MaterialPageRoute(

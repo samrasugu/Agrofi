@@ -35,8 +35,6 @@ class _ChangeAddressScreenState extends State<ChangeAddressScreen> {
       subCounty: _subCountyController.text,
       county: _countyController.text,
     );
-    // if
-    // Navigator.pop(context);
   }
 
   @override
@@ -45,9 +43,9 @@ class _ChangeAddressScreenState extends State<ChangeAddressScreen> {
       appBar: AppBar(
         title: const Text('Change Address'),
         elevation: 1,
-        backgroundColor: Colors.white,
+        backgroundColor: GlobalVariables.primaryColor,
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       backgroundColor: Colors.white,

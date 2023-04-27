@@ -35,7 +35,9 @@ class _BookTractorScreenState extends State<BookTractorScreen> {
       appBar: AppBar(
         title: const Text(
           "Book tractor",
-          style: TextStyle(fontSize: 16),
+          style: TextStyle(
+            fontSize: 16,
+          ),
         ),
         centerTitle: true,
         elevation: 0,

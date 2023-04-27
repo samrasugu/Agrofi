@@ -32,15 +32,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         ),
         centerTitle: true,
         elevation: 1,
-        backgroundColor: Colors.white,
+        backgroundColor: GlobalVariables.primaryColor,
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 10.0,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

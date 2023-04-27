@@ -40,7 +40,9 @@ class _CurrentLoanTileState extends State<CurrentLoanTile> {
 
   Future<void> fetchCurrentLoan() async {
     loan = await accountServices.getCurrentLoan(context: context);
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override

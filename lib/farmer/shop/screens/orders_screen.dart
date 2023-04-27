@@ -22,9 +22,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
         ),
         centerTitle: true,
         elevation: 1,
-        backgroundColor: Colors.white,
+        backgroundColor: GlobalVariables.primaryColor,
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       backgroundColor: Colors.white,

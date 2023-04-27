@@ -44,7 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
           flexibleSpace: Container(
-            decoration: const BoxDecoration(color: Colors.white),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
           ),
           elevation: 0,
           backgroundColor: GlobalVariables.greyBackGround,

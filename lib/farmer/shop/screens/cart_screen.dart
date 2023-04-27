@@ -38,9 +38,9 @@ class _CartScreenState extends State<CartScreen> {
         ),
         centerTitle: true,
         elevation: 1,
-        backgroundColor: GlobalVariables.backGrooundColor,
+        backgroundColor: GlobalVariables.primaryColor,
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       backgroundColor: Colors.white,
