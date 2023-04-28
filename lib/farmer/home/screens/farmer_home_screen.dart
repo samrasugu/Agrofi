@@ -5,7 +5,7 @@ import 'package:agrofi/farmer/home/widgets/pending_booking.dart';
 import 'package:agrofi/farmer/loans/screens/request_loan_screen.dart';
 import 'package:agrofi/farmer/tractor_bookings/screens/book_tractor_screen.dart';
 import 'package:agrofi/farmer/home/widgets/loan_balance.dart';
-import 'package:agrofi/farmer/notifications/screens/notifications_screen.dart';
+import 'package:agrofi/common/notifications/screens/notifications_screen.dart';
 import 'package:agrofi/farmer/settings/screens/settings_screen.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -134,8 +134,10 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
               // current active booking
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 10.0,
+                  // vertical: 6.0,
                   horizontal: 8,
+                ).copyWith(
+                  top: 15,
                 ),
                 child: Row(
                   children: const [
@@ -154,8 +156,10 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
 
               // current active booking
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10.0,
+                  horizontal: 8,
+                ),
                 child: Row(
                   children: const [
                     Text(

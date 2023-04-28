@@ -31,33 +31,39 @@ class _TractorBottomBarScreenState extends State<TractorBottomBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: pages[_page],
-        bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _page,
-            selectedItemColor: GlobalVariables.primaryColor,
-            unselectedItemColor: Colors.black,
-            backgroundColor: Colors.white,
-            type: BottomNavigationBarType.fixed,
-            iconSize: 28,
-            elevation: 20,
-            // showSelectedLabels: false,
-            // showUnselectedLabels: false,
-            onTap: updatePage,
-            items: const [
-              // Home
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home_rounded), label: 'Home'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.access_time),
-                  label: 'Recent activity'),
-              // BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined),
-              // label: 'Transactions'
-              // ),
-              // BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined),
-              // label: ''
-              // ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.settings), label: 'Settings')
-            ]));
+      body: pages[_page],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _page,
+        selectedItemColor: GlobalVariables.primaryColor,
+        unselectedItemColor: Colors.black,
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
+        iconSize: 28,
+        elevation: 20,
+        // showSelectedLabels: false,
+        // showUnselectedLabels: false,
+        onTap: updatePage,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_rounded,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.analytics,
+            ),
+            label: 'Recent activity',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings,
+            ),
+            label: 'Settings',
+          )
+        ],
+      ),
+    );
   }
 }

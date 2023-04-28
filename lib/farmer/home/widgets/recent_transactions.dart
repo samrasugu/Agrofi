@@ -23,7 +23,7 @@ class _RecentTransactionsState extends State<RecentTransactions> {
 
   final AccountServices _accountServices = AccountServices();
 
-  List<Transaction>? transactions = [];
+  List<Transaction>? transactions;
 
   @override
   void initState() {
@@ -43,113 +43,119 @@ class _RecentTransactionsState extends State<RecentTransactions> {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context).user;
-    return transactions!.isEmpty
-        ? Center(
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: const BoxDecoration(
-                color: GlobalVariables.greyBackGround,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(
-                    15,
-                  ),
-                ),
-              ),
-              child: const Center(
-                child: Text(
-                  'You have no recent transactions',
-                ),
-              ),
+    return transactions == null
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: GlobalVariables.primaryColor,
             ),
           )
-        : ListView.builder(
-            itemCount: transactions!.length,
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (BuildContext context, int index) {
-              final transaction = transactions![index];
-              return Container(
-                padding: const EdgeInsets.symmetric(vertical: 6.0),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 1,
-                      color: Colors.black26,
+        : transactions!.isEmpty
+            ? Center(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: const BoxDecoration(
+                    color: GlobalVariables.greyBackGround,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        15,
+                      ),
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'You have no recent transactions',
                     ),
                   ),
                 ),
-                child: ListTile(
-                  leading: Container(
-                    padding: const EdgeInsets.all(
-                      10,
+              )
+            : ListView.builder(
+                itemCount: transactions!.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  final transaction = transactions![index];
+                  return Container(
+                    padding: const EdgeInsets.symmetric(vertical: 6.0),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 1,
+                          color: Colors.black26,
+                        ),
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Icon(
-                      Icons.person_2_rounded,
-                      color: Colors.black,
-                    ),
-                  ),
-                  trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '${transaction.amount}',
-                        style: const TextStyle(
+                    child: ListTile(
+                      leading: Container(
+                        padding: const EdgeInsets.all(
+                          10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Icon(
+                          transaction.transactionType == 'Tractor Payment'
+                              ? Icons.agriculture
+                              : Icons.person_2_rounded,
                           color: Colors.black,
-                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        DateFormat.Hms().format(
-                          DateTime.fromMillisecondsSinceEpoch(
-                            transaction.date,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${transaction.amount}',
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        style: TextStyle(
-                          color: Colors.grey.shade700,
-                        ),
-                      )
-                    ],
-                  ),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // check if user is partyA or B
-                      Text(
-                        transaction.partyA == userProvider.id
-                            ? userProvider.firstName
-                            : transaction.partyB,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        DateFormat.yMMMMd().format(
-                          DateTime.fromMillisecondsSinceEpoch(
-                            transaction.date,
+                          const SizedBox(
+                            height: 5,
                           ),
-                        ),
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey.shade700,
-                        ),
+                          Text(
+                            DateFormat.Hms().format(
+                              DateTime.fromMillisecondsSinceEpoch(
+                                transaction.date,
+                              ),
+                            ),
+                            style: TextStyle(
+                              color: Colors.grey.shade700,
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // check if user is partyA or B
+                          Text(
+                            transaction.transactionType,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            DateFormat.yMMMMd().format(
+                              DateTime.fromMillisecondsSinceEpoch(
+                                transaction.date,
+                              ),
+                            ),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               );
-            },
-          );
   }
 }

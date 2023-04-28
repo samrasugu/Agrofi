@@ -51,6 +51,9 @@ class _PendingBookingsListViewState extends State<PendingBookingsListView> {
                     ),
                   ),
                 ),
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
                 child: const Center(
                   child: Text(
                     "No pending bookings",
@@ -182,21 +185,25 @@ class _PendingBookingsListViewState extends State<PendingBookingsListView> {
                       ),
                     );
                   } else {
-                    return Container(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      decoration: const BoxDecoration(
-                        color: GlobalVariables.greyBackGround,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            10,
-                          ),
-                        ),
-                      ),
-                      child: const Center(
-                        child: Text("No pending bookings"),
-                      ),
-                    );
+                    return const SizedBox.shrink();
+                    // return Container(
+                    //   height: MediaQuery.of(context).size.height * 0.1,
+                    //   width: MediaQuery.of(context).size.width * 0.85,
+                    //   decoration: const BoxDecoration(
+                    //     color: GlobalVariables.greyBackGround,
+                    //     borderRadius: BorderRadius.all(
+                    //       Radius.circular(
+                    //         10,
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   margin: const EdgeInsets.symmetric(
+                    //     horizontal: 10.0,
+                    //   ),
+                    //   child: const Center(
+                    //     child: Text("No pendig bookings"),
+                    //   ),
+                    // );
                   }
                 },
               );

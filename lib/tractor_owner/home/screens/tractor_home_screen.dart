@@ -1,10 +1,9 @@
+import 'package:agrofi/common/notifications/screens/notifications_screen.dart';
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/tractor_owner/home/services/home_services.dart';
 import 'package:agrofi/tractor_owner/home/widgets/active_booking.dart';
 import 'package:agrofi/tractor_owner/home/widgets/booking_requests_list_view.dart';
 import 'package:agrofi/tractor_owner/home/widgets/total_earnings.dart';
-import 'package:agrofi/tractor_owner/notifications/screens/notifications_screen.dart';
-import 'package:agrofi/tractor_owner/settings/screens/settings_screen.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

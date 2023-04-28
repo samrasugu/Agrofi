@@ -16,22 +16,29 @@ class TractorBookingServices {
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
-      http.Response res = await http.post(Uri.parse('$uri/api/farmer/book'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': userProvider.user.token,
-          },
-          body: jsonEncode({
+      http.Response res = await http.post(
+        Uri.parse('$uri/api/farmer/book'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+        body: jsonEncode(
+          {
             'dateExpected': dateExpected,
-          }));
+          },
+        ),
+      );
 
-      if (context.mounted) {}
-      httpErrorHandle(
+      if (context.mounted) {
+        httpErrorHandle(
           response: res,
           context: context,
           onSuccess: () {
             showSnackBar(context, 'Your order has been placed!');
-          });
+            Navigator.pop(context);
+          },
+        );
+      }
     } catch (e) {
       showSnackBar(context, e.toString());
     }
@@ -59,14 +66,15 @@ class TractorBookingServices {
         ),
       );
 
-      if (context.mounted) {}
-      httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () {
-          showSnackBar(context, 'Payment Successful');
-        },
-      );
+      if (context.mounted) {
+        httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, 'Payment Successful');
+          },
+        );
+      }
     } catch (e) {
       showSnackBar(context, e.toString());
     }

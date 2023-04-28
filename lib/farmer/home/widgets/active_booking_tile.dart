@@ -106,7 +106,7 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                                     "Tractor Owner's Name:",
                                     style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   const SizedBox(
@@ -125,10 +125,29 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                               Text(
                                 "Date expected: ${booking.dateExpected}",
                               ),
-                              const Text(
-                                "Status",
-                                style: TextStyle(color: Colors.black54),
-                              )
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                      text: "Status: ",
+                                      style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: booking.status == 1
+                                          ? "Active"
+                                          : "Inactive",
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: GlobalVariables.primaryColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
                               // Text('${DateFormat().format(DateTime.fromMillisecondsSinceEpoch(booking.orderedAt))}',
                               // style: const TextStyle(
                               //   color: Colors.black54
@@ -139,24 +158,28 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                       ),
                     );
                   } else {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        decoration: const BoxDecoration(
-                          color: GlobalVariables.greyBackGround,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(
-                              10,
-                            ),
-                          ),
-                        ),
-                        child: const Center(
-                          child: Text("No active bookings"),
-                        ),
-                      ),
-                    );
+                    return const SizedBox.shrink();
+                    // return Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    //   child: Container(
+                    //     height: MediaQuery.of(context).size.height * 0.1,
+                    //     width: MediaQuery.of(context).size.width * 0.85,
+                    //     decoration: const BoxDecoration(
+                    //       color: GlobalVariables.greyBackGround,
+                    //       borderRadius: BorderRadius.all(
+                    //         Radius.circular(
+                    //           10,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     margin: const EdgeInsets.symmetric(
+                    //       vertical: 10.0,
+                    //     ),
+                    //     child: const Center(
+                    //       child: Text("No active bookings"),
+                    //     ),
+                    //   ),
+                    // );
                   }
                 },
               );

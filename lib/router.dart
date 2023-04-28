@@ -19,7 +19,7 @@ import 'package:agrofi/farmer/shop/screens/store_details_screen.dart';
 import 'package:agrofi/farmer/tractor_bookings/screens/book_tractor_screen.dart';
 import 'package:agrofi/farmer/home/screens/farmer_bottom_bar_screen.dart';
 import 'package:agrofi/farmer/home/screens/farmer_home_screen.dart';
-import 'package:agrofi/farmer/notifications/screens/notifications_screen.dart';
+import 'package:agrofi/common/notifications/screens/notifications_screen.dart';
 import 'package:agrofi/farmer/shop/screens/orders_screen.dart';
 import 'package:agrofi/farmer/settings/screens/account_screen.dart';
 import 'package:agrofi/farmer/settings/screens/settings_screen.dart';

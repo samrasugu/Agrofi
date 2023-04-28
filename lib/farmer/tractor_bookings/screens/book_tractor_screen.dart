@@ -25,7 +25,9 @@ class _BookTractorScreenState extends State<BookTractorScreen> {
 
   void bookTractor() {
     tractorBookingServices.bookTractor(
-        context: context, dateExpected: selectedDate);
+      context: context,
+      dateExpected: selectedDate,
+    );
   }
 
   @override
@@ -42,6 +44,9 @@ class _BookTractorScreenState extends State<BookTractorScreen> {
         centerTitle: true,
         elevation: 0,
         backgroundColor: GlobalVariables.primaryColor,
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
       ),
       body: Center(
         child: Column(

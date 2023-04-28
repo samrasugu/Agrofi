@@ -46,15 +46,15 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
       TractorBookingServices();
   
   void _payTractor () async {
-    try {
+    // try {
       await tractorBookingServices.payForBooking(
         context: context,
         bookingId: widget.booking.id,
         tractorOwnerID: widget.booking.tractorOwner?.id ?? "",
       );
-    } catch (e) {
-      showSnackBar(context, e.toString());
-    }
+    // } catch (e) {
+      // showSnackBar(context, e.toString());
+    // }
   }
 
   @override

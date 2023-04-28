@@ -53,6 +53,9 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                       Radius.circular(10),
                     ),
                   ),
+                  margin: const EdgeInsets.only(
+                    top: 7.0,
+                  ),
                   child: const Center(
                     child: Text(
                       "No Active Bookings",
@@ -70,74 +73,52 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   final booking = bookingList![index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        TractorOwnerBookingDetailsScreen.routeName,
-                        arguments: bookingList![index],
-                      );
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      padding: const EdgeInsets.all(10.0),
-                      margin: const EdgeInsets.only(
-                        top: 10.0,
-                      ),
-                      height: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(
-                            10,
+                  if (booking.status == 1) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          TractorOwnerBookingDetailsScreen.routeName,
+                          arguments: bookingList![index],
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        padding: const EdgeInsets.all(10.0),
+                        margin: const EdgeInsets.only(
+                          top: 10.0,
+                        ),
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(
+                              10,
+                            ),
+                          ),
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 1,
                           ),
                         ),
-                        border: Border.all(
-                          color: Colors.black26,
-                          width: 1,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              const Text(
-                                "Farmer's Name:",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 7,
-                              ),
-                              Text(
-                                "${booking.farmer!.firstName} ${booking.farmer!.lastName}",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: GlobalVariables.primaryColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            "${booking.farmer!.village}, ${booking.farmer!.subCounty}, ${booking.farmer!.county} County",
-                          ),
-                          Text.rich(
-                            TextSpan(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
                               children: [
-                                const TextSpan(
-                                  text: "Date Expected: ",
+                                const Text(
+                                  "Farmer's Name:",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                TextSpan(
-                                  text: booking.dateExpected,
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                Text(
+                                  "${booking.farmer!.firstName} ${booking.farmer!.lastName}",
                                   style: const TextStyle(
                                     fontSize: 16,
                                     color: GlobalVariables.primaryColor,
@@ -146,21 +127,47 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                                 ),
                               ],
                             ),
-                          ),
-                          // Text(
-                          //   DateFormat().format(
-                          //     DateTime.fromMillisecondsSinceEpoch(
-                          //       booking.orderedAt,
-                          //     ),
-                          //   ),
-                          //   style: const TextStyle(
-                          //     color: Colors.black54,
-                          //   ),
-                          // )
-                        ],
+                            Text(
+                              "${booking.farmer!.village}, ${booking.farmer!.subCounty}, ${booking.farmer!.county} County",
+                            ),
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  const TextSpan(
+                                    text: "Date Expected: ",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: booking.dateExpected,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: GlobalVariables.primaryColor,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // Text(
+                            //   DateFormat().format(
+                            //     DateTime.fromMillisecondsSinceEpoch(
+                            //       booking.orderedAt,
+                            //     ),
+                            //   ),
+                            //   style: const TextStyle(
+                            //     color: Colors.black54,
+                            //   ),
+                            // )
+                          ],
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
                 },
               );
   }
