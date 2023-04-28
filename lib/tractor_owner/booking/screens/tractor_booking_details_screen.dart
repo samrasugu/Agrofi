@@ -47,9 +47,6 @@ class _TractorOwnerBookingDetailsScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 15.0,
-              ),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(10),
@@ -199,49 +196,51 @@ class _TractorOwnerBookingDetailsScreenState
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 15.0,
-              ),
               // button for accepting request --
               widget.booking.status == 0
-                  ? CustomButton(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: const Text('Confirm'),
-                            content: Text(
-                              'Do you wish to confirm the tractor request for: ${widget.booking.dateExpected}',
-                            ),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: const Text("Cancel"),
+                  ? Padding(
+                      padding: const EdgeInsets.only(
+                        top: 8.0,
+                      ),
+                      child: CustomButton(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: const Text('Confirm'),
+                              content: Text(
+                                'Do you wish to confirm the tractor request for: ${widget.booking.dateExpected}',
                               ),
-                              TextButton(
-                                onPressed: () {
-                                  bookingService.confirmBooking(
-                                    context: context,
-                                    booking: widget.booking,
-                                  );
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: const Text("Confirm"),
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                      color: GlobalVariables.primaryColor,
-                      text: 'Accept Request',
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(ctx).pop();
+                                  },
+                                  child: const Text("Cancel"),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    bookingService.confirmBooking(
+                                      context: context,
+                                      booking: widget.booking,
+                                    );
+                                    Navigator.of(ctx).pop();
+                                  },
+                                  child: const Text("Confirm"),
+                                )
+                              ],
+                            ),
+                          );
+                        },
+                        color: GlobalVariables.primaryColor,
+                        text: 'Accept Request',
+                      ),
                     )
                   : const SizedBox(
                       height: 1,
                     ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               const Text(
                 'Status',

@@ -36,103 +36,127 @@ class _BookingRequestsListViewState extends State<BookingRequestsListView> {
   Widget build(BuildContext context) {
     return bookingList == null
         ? const Center(
-            child: Text("No requests"),
+            child: CircularProgressIndicator(
+              color: GlobalVariables.primaryColor,
+            ),
           )
-        : ListView.builder(
-            itemCount: bookingList!.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              final booking = bookingList![index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    TractorOwnerBookingDetailsScreen.routeName,
-                    arguments: bookingList![index],
-                  );
-                },
+        : bookingList!.isEmpty
+            ? Center(
                 child: Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
                   width: MediaQuery.of(context).size.width * 0.9,
-                  padding: const EdgeInsets.all(10.0),
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(
-                        10,
-                      ),
-                    ),
-                    border: Border.all(
-                      color: Colors.black26,
-                      width: 1,
+                  decoration: const BoxDecoration(
+                    color: GlobalVariables.greyBackGround,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Text(
-                            "Farmer's Name:",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 7,
-                          ),
-                          Text(
-                            "${booking.farmer!.firstName} ${booking.farmer!.lastName}",
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: GlobalVariables.primaryColor,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                  child: const Center(
+                    child: Text(
+                      "No Booking Requests",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
                       ),
-                      Text(
-                        "${booking.farmer!.village}, ${booking.farmer!.subCounty}, ${booking.farmer!.county} County",
-                      ),
-                      Text.rich(
-                        TextSpan(
-                          children: [
-                            const TextSpan(
-                              text: "Date Expected: ",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            TextSpan(
-                              text: booking.dateExpected,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: GlobalVariables.primaryColor,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      // Text(
-                      //   DateFormat().format(
-                      //     DateTime.fromMillisecondsSinceEpoch(
-                      //       booking.orderedAt,
-                      //     ),
-                      //   ),
-                      //   style: const TextStyle(
-                      //     color: Colors.black54,
-                      //   ),
-                      // )
-                    ],
+                    ),
                   ),
                 ),
+              )
+            : ListView.builder(
+                itemCount: bookingList!.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final booking = bookingList![index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        TractorOwnerBookingDetailsScreen.routeName,
+                        arguments: bookingList![index],
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      padding: const EdgeInsets.all(10.0),
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(
+                            10,
+                          ),
+                        ),
+                        border: Border.all(
+                          color: Colors.black26,
+                          width: 1,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Text(
+                                "Farmer's Name:",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 7,
+                              ),
+                              Text(
+                                "${booking.farmer!.firstName} ${booking.farmer!.lastName}",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: GlobalVariables.primaryColor,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "${booking.farmer!.village}, ${booking.farmer!.subCounty}, ${booking.farmer!.county} County",
+                          ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                const TextSpan(
+                                  text: "Date Expected: ",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: booking.dateExpected,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: GlobalVariables.primaryColor,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Text(
+                          //   DateFormat().format(
+                          //     DateTime.fromMillisecondsSinceEpoch(
+                          //       booking.orderedAt,
+                          //     ),
+                          //   ),
+                          //   style: const TextStyle(
+                          //     color: Colors.black54,
+                          //   ),
+                          // )
+                        ],
+                      ),
+                    ),
+                  );
+                },
               );
-            },
-          );
   }
 }

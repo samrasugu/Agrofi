@@ -36,120 +36,130 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
   var date = DateFormat.yMMMEd('en_US').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
-    return bookingList == null || bookingList!.isEmpty
-        ? Container(
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width * 0.85,
-            decoration: const BoxDecoration(
-              color: GlobalVariables.greyBackGround,
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              ),
-            ),
-            child: const Center(
-              child: Text(
-                "No active bookings",
-              ),
+    return bookingList == null
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: GlobalVariables.primaryColor,
             ),
           )
-        : ListView.builder(
-            itemCount: bookingList!.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              final booking = bookingList![index];
-              if (booking.status == 1) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      BookingDetailsScreen.routeName,
-                      arguments: bookingList![index],
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                      vertical: 7.0,
+        : bookingList!.isEmpty
+            ? Container(
+                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width * 0.85,
+                decoration: const BoxDecoration(
+                  color: GlobalVariables.greyBackGround,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                child: const Center(
+                  child: Text(
+                    "No active bookings",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
                     ),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      padding: const EdgeInsets.all(10.0),
-                      height: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(7),
+                  ),
+                ),
+              )
+            : ListView.builder(
+                itemCount: bookingList!.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final booking = bookingList![index];
+                  if (booking.status == 1) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          BookingDetailsScreen.routeName,
+                          arguments: bookingList![index],
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0,
+                          vertical: 7.0,
                         ),
-                        border: Border.all(
-                          color: Colors.black26,
-                          width: 1,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          padding: const EdgeInsets.all(10.0),
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(7),
+                            ),
+                            border: Border.all(
+                              color: Colors.black26,
+                              width: 1,
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
-                                "Tractor Owner's Name:",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 7,
+                              Row(
+                                children: [
+                                  const Text(
+                                    "Tractor Owner's Name:",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 7,
+                                  ),
+                                  Text(
+                                    booking.tractorOwner?.firstName ?? "Hello",
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: GlobalVariables.primaryColor,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
                               ),
                               Text(
-                                booking.tractorOwner?.firstName ?? "Hello",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: GlobalVariables.primaryColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                                "Date expected: ${booking.dateExpected}",
                               ),
+                              const Text(
+                                "Status",
+                                style: TextStyle(color: Colors.black54),
+                              )
+                              // Text('${DateFormat().format(DateTime.fromMillisecondsSinceEpoch(booking.orderedAt))}',
+                              // style: const TextStyle(
+                              //   color: Colors.black54
+                              // ),)
                             ],
                           ),
-                          Text(
-                            "Date expected: ${booking.dateExpected}",
-                          ),
-                          const Text(
-                            "Status",
-                            style: TextStyle(color: Colors.black54),
-                          )
-                          // Text('${DateFormat().format(DateTime.fromMillisecondsSinceEpoch(booking.orderedAt))}',
-                          // style: const TextStyle(
-                          //   color: Colors.black54
-                          // ),)
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              } else {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.1,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    decoration: const BoxDecoration(
-                      color: GlobalVariables.greyBackGround,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          10,
                         ),
                       ),
-                    ),
-                    child: const Center(
-                      child: Text("No active bookings"),
-                    ),
-                  ),
-                );
-              }
-            },
-          );
+                    );
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: const BoxDecoration(
+                          color: GlobalVariables.greyBackGround,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(
+                              10,
+                            ),
+                          ),
+                        ),
+                        child: const Center(
+                          child: Text("No active bookings"),
+                        ),
+                      ),
+                    );
+                  }
+                },
+              );
   }
 }
 
