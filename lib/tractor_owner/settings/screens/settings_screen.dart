@@ -1,12 +1,13 @@
 import 'package:agrofi/common/widgets/custom_list_tile.dart';
 import 'package:agrofi/constants/global_variables.dart';
-import 'package:agrofi/tractor_owner/booking/screens/bookings_list_screen.dart';
+import 'package:agrofi/farmer/transactions/screens/transactions_list_screen.dart';
 import 'package:agrofi/tractor_owner/settings/screens/account_screen.dart';
 import 'package:agrofi/tractor_owner/settings/services/account_services.dart';
 import 'package:agrofi/tractor_owner/transactions/screens/transactions_home_screen.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:agrofi/common/screens/bookings_list_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routeName = "/settings-screen";
@@ -83,16 +84,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Column(
             children: [
               CustomListTile(
-                  leadingIcon: Icons.list,
-                  trailingIcon: Icons.arrow_forward_ios_rounded,
-                  title: "Bookings history",
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      BookingsListScreen.routeName,
-                      arguments: {},
-                    );
-                  }),
+                leadingIcon: Icons.list,
+                trailingIcon: Icons.arrow_forward_ios_rounded,
+                title: "Bookings history",
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    BookingsListScreen.routeName,
+                  );
+                },
+              ),
               CustomListTile(
                 leadingIcon: Icons.list,
                 trailingIcon: Icons.arrow_forward_ios_rounded,
@@ -100,7 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    TransactionsHomeScreen.routeName,
+                    TransactionsListScreen.routeName,
                     arguments: {},
                   );
                 },

@@ -17,28 +17,29 @@ class BookingService {
     // print(booking.id);
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
-      http.Response res = await http.post(Uri.parse("$uri/api/tractorOwner/confirmrequest"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
+      http.Response res = await http.post(
+        Uri.parse("$uri/api/tractorOwner/confirmrequest"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': userProvider.user.token,
-      },
-      body: jsonEncode({
-        'orderId': booking.id
-        })
+        },
+        body: jsonEncode(
+          {'orderId': booking.id},
+        ),
       );
 
       if (context.mounted) {
-        
+        httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, "Success! You have confirmed the request");
+            Navigator.pop(context);
+          },
+        );
       }
-      httpErrorHandle(
-        response: res, 
-        context: context, 
-        onSuccess: () {
-          showSnackBar(context, "Success! You have confirmed the request");
-        }
-      );
     } catch (e) {
       showSnackBar(context, e.toString());
     }
-  } 
+  }
 }

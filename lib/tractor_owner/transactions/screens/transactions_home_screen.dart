@@ -1,5 +1,5 @@
 import 'package:agrofi/constants/global_variables.dart';
-import 'package:agrofi/tractor_owner/transactions/widgets/transaction_history_list_view.dart';
+import 'package:agrofi/tractor_owner/transactions/widgets/booking_history_list_view.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsHomeScreen extends StatefulWidget {
@@ -30,7 +30,7 @@ class _TransactionsHomeScreenState extends State<TransactionsHomeScreen> {
         child: Center(
           child: Padding(
             padding: EdgeInsets.only(top: 8.0),
-            child: TransactionHistoryListView(),
+            // child: TransactionHistoryListView(),
           ),
         ),
       ),

@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:agrofi/models/tractorowner.dart';
+import 'package:agrofi/models/user.dart';
 
 class Booking {
   final String id;
   final String trackingID;
-  // final User farmer;
+  final UserModel? farmer;
   final TractorOwner? tractorOwner;
   final int orderedAt;
   final int status;
@@ -16,7 +17,7 @@ class Booking {
   Booking({
     required this.id, 
     required this.trackingID,
-    // required this.farmer, 
+    required this.farmer, 
     this.tractorOwner, 
     required this.orderedAt, 
     required this.status, 
@@ -39,6 +40,7 @@ class Booking {
     return Booking(
       id: map['_id'] ?? '', 
       trackingID: map['trackingId'] ?? '',
+      farmer: UserModel.fromMap(map['farmer']),
       tractorOwner: TractorOwner.fromMap(map['tractorOwner']), 
       orderedAt: map['orderedAt'] ?? 0, 
       status: map['status'] ?? 0, 
@@ -54,7 +56,7 @@ class Booking {
   Booking copyWith({
     String? id,
     String? trackingID,
-    // User? farmer,
+    UserModel? farmer,
     TractorOwner? tractorOwner,
     int? orderedAt,
     int? status,
@@ -64,7 +66,7 @@ class Booking {
     return Booking(
       id: id ?? this.id, 
       trackingID: trackingID ?? this.trackingID,
-      // farmer: farmer ?? this.farmer, 
+      farmer: farmer ?? this.farmer, 
       tractorOwner: tractorOwner ?? this.tractorOwner, 
       orderedAt: orderedAt ?? this.orderedAt, 
       status: status ?? this.status, 

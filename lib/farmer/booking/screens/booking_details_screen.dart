@@ -61,7 +61,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: GlobalVariables.greyBackGround,
+        backgroundColor: GlobalVariables.primaryColor,
         title: const Text(
           "Booking details",
           style: TextStyle(

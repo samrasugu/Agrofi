@@ -15,11 +15,12 @@ class HomeService {
     List<Booking> bookingsList = [];
     try {
       http.Response res = await http.get(
-          Uri.parse('$uri/api/tractorOwner/requests'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': userProvider.user.token,
-          });
+        Uri.parse('$uri/api/tractorOwner/requests'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+      );
 
       if (context.mounted) {}
       httpErrorHandle(
@@ -49,29 +50,30 @@ class HomeService {
     List<Booking> bookingsList = [];
     try {
       http.Response res = await http.get(
-          Uri.parse('$uri/api/tractorOwner/bookings'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': userProvider.user.token,
-          });
+        Uri.parse('$uri/api/tractorOwner/bookings'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+      );
 
-      //  jsonDecode(res.body);
-
-      // print(res.body);
-
-      if (context.mounted) {}
-      httpErrorHandle(
+      if (context.mounted) {
+        httpErrorHandle(
           response: res,
           context: context,
           onSuccess: () {
             for (int i = 0; i < jsonDecode(res.body).length; i++) {
-              bookingsList.add(Booking.fromJson(
-                jsonEncode(
-                  jsonDecode(res.body)[i],
+              bookingsList.add(
+                Booking.fromJson(
+                  jsonEncode(
+                    jsonDecode(res.body)[i],
+                  ),
                 ),
-              ));
+              );
             }
-          });
+          },
+        );
+      }
     } catch (e) {
       showSnackBar(context, e.toString());
     }

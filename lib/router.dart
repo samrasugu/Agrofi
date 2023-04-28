@@ -4,6 +4,7 @@ import 'package:agrofi/auth/screens/phone_verification_screen.dart';
 import 'package:agrofi/auth/screens/register_screen.dart';
 import 'package:agrofi/auth/screens/registration_stepper.dart';
 import 'package:agrofi/auth/screens/user_type_selection_screen.dart';
+import 'package:agrofi/common/screens/bookings_list_screen.dart';
 import 'package:agrofi/farmer/booking/screens/booking_details_screen.dart';
 import 'package:agrofi/farmer/loans/screens/request_loan_screen.dart';
 import 'package:agrofi/farmer/shop/screens/change_address_screen.dart';
@@ -29,6 +30,7 @@ import 'package:agrofi/models/order.dart';
 import 'package:agrofi/models/product.dart';
 import 'package:agrofi/models/store.dart';
 import 'package:agrofi/models/user.dart';
+import 'package:agrofi/tractor_owner/booking/screens/tractor_booking_details_screen.dart';
 import 'package:agrofi/tractor_owner/home/screens/tractor_bottom_bar_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -186,6 +188,19 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const TractorBottomBarScreen(),
+      );
+    case BookingsListScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const BookingsListScreen(),
+      );
+    case TractorOwnerBookingDetailsScreen.routeName:
+      var booking = routeSettings.arguments as Booking;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => TractorOwnerBookingDetailsScreen(
+          booking: booking,
+        ),
       );
     // case '/':
     //   return MaterialPageRoute(

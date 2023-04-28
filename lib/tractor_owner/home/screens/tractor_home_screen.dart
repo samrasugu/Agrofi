@@ -90,98 +90,95 @@ class _TractorOwnerHomeScreenState extends State<TractorOwnerHomeScreen> {
               const TotalEarnings(),
 
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
 
               // status
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text.rich(
-                      TextSpan(
-                        text: "Status: ",
-                        style: const TextStyle(fontSize: 20),
-                        children: [
-                          TextSpan(
-                            text: user.isOnline == false
-                                ? "Offline\n"
-                                : "Online\n",
-                            style: TextStyle(
-                              fontSize: 17,
-                              color: user.isOnline == false
-                                  ? Colors.red
-                                  : GlobalVariables.primaryColor,
-                            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      text: "Status: ",
+                      style: const TextStyle(fontSize: 20),
+                      children: [
+                        TextSpan(
+                          text: user.isOnline == false
+                              ? "Offline\n"
+                              : "Online\n",
+                          style: TextStyle(
+                            fontSize: 17,
+                            color: user.isOnline == false
+                                ? Colors.red
+                                : GlobalVariables.primaryColor,
                           ),
-                          TextSpan(
-                            text: user.isOnline == false
-                                ? "(Tap to go online)"
-                                : "(Tap to go offline)",
-                            style: const TextStyle(
-                              fontSize: 17,
-                              color: Colors.black,
-                            ),
+                        ),
+                        TextSpan(
+                          text: user.isOnline == false
+                              ? "(Tap to go online)"
+                              : "(Tap to go offline)",
+                          style: const TextStyle(
+                            fontSize: 17,
+                            color: Colors.black,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    CupertinoSwitch(
-                      value: user.isOnline,
-                      onChanged: (value) {
-                        setState(
-                          () {
-                            user.isOnline = value;
-                            homeService.changeStatus(
-                              context: context,
-                              status: value,
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                  CupertinoSwitch(
+                    value: user.isOnline,
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          user.isOnline = value;
+                          homeService.changeStatus(
+                            context: context,
+                            status: value,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
+
+              const SizedBox(
+                height: 15,
               ),
 
               // current active booking
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 8,
-                ),
-                child: Row(
-                  children: const [
-                    Text(
-                      "Active bookings:",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+              Row(
+                children: const [
+                  Text(
+                    "Active bookings:",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               const ActiveBookingTile(),
 
+              const SizedBox(
+                height: 15,
+              ),
+
               // current booking requests
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 8,
-                ),
-                child: Row(
-                  children: const [
-                    Text(
-                      "Requests:",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+              Row(
+                children: const [
+                  Text(
+                    "Requests:",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(
+                height: 10,
               ),
               const BookingRequestsListView()
             ],

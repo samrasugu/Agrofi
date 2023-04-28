@@ -1,5 +1,5 @@
 import 'package:agrofi/constants/global_variables.dart';
-import 'package:agrofi/tractor_owner/booking/screens/booking_details_screen.dart';
+import 'package:agrofi/tractor_owner/booking/screens/tractor_booking_details_screen.dart';
 import 'package:agrofi/tractor_owner/home/services/home_services.dart';
 import 'package:agrofi/models/booking.dart';
 import 'package:flutter/material.dart';
@@ -52,68 +52,90 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    BookingDetailsScreen.routeName,
+                    TractorOwnerBookingDetailsScreen.routeName,
                     arguments: bookingList![index],
                   );
                 },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10.0,
-                    vertical: 7.0,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  padding: const EdgeInsets.all(10.0),
+                  margin: const EdgeInsets.only(
+                    top: 10.0,
                   ),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    padding: const EdgeInsets.all(
-                      10.0,
-                    ),
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(
-                          15,
-                        ),
-                      ),
-                      border: Border.all(
-                        color: Colors.black26,
-                        width: 1,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(
+                        10,
                       ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+                    border: Border.all(
+                      color: Colors.black26,
+                      width: 1,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            "Farmer's Name:",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          Text(
+                            "${booking.farmer!.firstName} ${booking.farmer!.lastName}",
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: GlobalVariables.primaryColor,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "${booking.farmer!.village}, ${booking.farmer!.subCounty}, ${booking.farmer!.county} County",
+                      ),
+                      Text.rich(
+                        TextSpan(
                           children: [
-                            const Text(
-                              "Farmer's Name:",
+                            const TextSpan(
+                              text: "Date Expected: ",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const SizedBox(
-                              width: 7,
+                            TextSpan(
+                              text: booking.dateExpected,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: GlobalVariables.primaryColor,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
-                            // Text("${booking.farmer.firstName} ${booking.farmer.lastName}",
-                            // style:  const TextStyle(fontSize: 16,
-                            // color: GlobalVariables.primaryColor,
-                            // fontWeight: FontWeight.w400),
-                            // ),
                           ],
                         ),
-                        // Text("${booking.farmer.village}, ${booking.farmer.subCounty}, ${booking.farmer.county} County"),
-                        // Text(booking.dateExpected,
-                        // style: const TextStyle(
-                        //   color: Colors.black54a
-                        // ),)
-
-                        // Text('${DateFormat().format(DateTime.fromMillisecondsSinceEpoch(booking.orderedAt))}',
-                        // style: const TextStyle(
-                        //   color: Colors.black54
-                        // ),)
-                      ],
-                    ),
+                      ),
+                      // Text(
+                      //   DateFormat().format(
+                      //     DateTime.fromMillisecondsSinceEpoch(
+                      //       booking.orderedAt,
+                      //     ),
+                      //   ),
+                      //   style: const TextStyle(
+                      //     color: Colors.black54,
+                      //   ),
+                      // )
+                    ],
                   ),
                 ),
               );

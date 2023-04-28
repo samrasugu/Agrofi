@@ -3,17 +3,20 @@ import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/tractor_owner/booking/services/booking_service.dart';
 import 'package:agrofi/models/booking.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class BookingDetailsScreen extends StatefulWidget {
-  static const String routeName = "/booking-details";
+class TractorOwnerBookingDetailsScreen extends StatefulWidget {
+  static const String routeName = "/tractor-booking-details";
   final Booking booking;
-  const BookingDetailsScreen({super.key, required this.booking});
+  const TractorOwnerBookingDetailsScreen({super.key, required this.booking});
 
   @override
-  State<BookingDetailsScreen> createState() => _BookingDetailsScreenState();
+  State<TractorOwnerBookingDetailsScreen> createState() =>
+      _TractorOwnerBookingDetailsScreenState();
 }
 
-class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
+class _TractorOwnerBookingDetailsScreenState
+    extends State<TractorOwnerBookingDetailsScreen> {
   int currentStep = 0;
 
   final BookingService bookingService = BookingService();
@@ -31,8 +34,9 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
         backgroundColor: GlobalVariables.primaryColor,
         title: const Text(
           "Booking details",
-          style: TextStyle(fontSize: 18,
-          color: Colors.white,
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
           ),
         ),
         elevation: 0,
@@ -43,11 +47,6 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const Text("Order details",
-              // style: TextStyle(
-              //     fontSize: 18,
-              //     fontWeight: FontWeight.bold,
-              //   ),),
               const SizedBox(
                 height: 15.0,
               ),
@@ -55,11 +54,15 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black12,
+                  border: Border.all(
+                    color: Colors.black12,
+                  ),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(
+                      10.0,
                     ),
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(10.0))),
+                  ),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -72,13 +75,13 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                         const SizedBox(
                           width: 5,
                         ),
-                        // Text(
-                        //   '${widget.booking.farmer.firstName} ${widget.booking.farmer.lastName}',
-                        //   style: const TextStyle(
-                        //     fontSize: 15,
-                        //     color: GlobalVariables.primaryColor,
-                        //   ),
-                        // ),
+                        Text(
+                          '${widget.booking.farmer!.firstName} ${widget.booking.farmer!.lastName}',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            color: GlobalVariables.primaryColor,
+                          ),
+                        ),
                       ],
                     ),
                     Row(
@@ -90,13 +93,13 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                         const SizedBox(
                           width: 5,
                         ),
-                        // Text(
-                        //   widget.booking.farmer.county,
-                        //   style: const TextStyle(
-                        //     fontSize: 15,
-                        //     color: GlobalVariables.primaryColor,
-                        //   ),
-                        // ),
+                        Text(
+                          widget.booking.farmer!.county,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            color: GlobalVariables.primaryColor,
+                          ),
+                        ),
                       ],
                     ),
                     Row(
@@ -108,13 +111,13 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                         const SizedBox(
                           width: 5,
                         ),
-                        // Text(
-                        //   widget.booking.farmer.subCounty,
-                        //   style: const TextStyle(
-                        //     fontSize: 15,
-                        //     color: GlobalVariables.primaryColor,
-                        //   ),
-                        // ),
+                        Text(
+                          widget.booking.farmer!.subCounty,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            color: GlobalVariables.primaryColor,
+                          ),
+                        ),
                       ],
                     ),
                     Row(
@@ -126,13 +129,13 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                         const SizedBox(
                           width: 5,
                         ),
-                        // Text(
-                        //   widget.booking.farmer.village,
-                        //   style: const TextStyle(
-                        //     fontSize: 15,
-                        //     color: GlobalVariables.primaryColor,
-                        //   ),
-                        // ),
+                        Text(
+                          widget.booking.farmer!.village,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            color: GlobalVariables.primaryColor,
+                          ),
+                        ),
                       ],
                     ),
                     Row(
@@ -153,16 +156,28 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                         ),
                       ],
                     ),
-                    // Row(
-                    //   children: [
-                    //     const Text("Ordered At:",
-                    //     style: TextStyle(fontSize: 16),),
-                    //     const SizedBox(width: 5,),
-                    //     Text(DateFormat().format(DateTime.fromMillisecondsSinceEpoch(widget.booking.orderedAt)),
-                    //     style: const TextStyle(fontSize: 15,
-                    //     color: GlobalVariables.primaryColor),),
-                    //   ],
-                    // ),
+                    Row(
+                      children: [
+                        const Text(
+                          "Ordered At:",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          DateFormat().format(
+                            DateTime.fromMillisecondsSinceEpoch(
+                              widget.booking.orderedAt,
+                            ),
+                          ),
+                          style: const TextStyle(
+                            fontSize: 15,
+                            color: GlobalVariables.primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
                     Row(
                       children: [
                         const Text(
@@ -172,13 +187,13 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                         const SizedBox(
                           width: 5,
                         ),
-                        // Text(
-                        //   widget.booking.farmer.landSize,
-                        //   style: const TextStyle(
-                        //     fontSize: 15,
-                        //     color: GlobalVariables.primaryColor,
-                        //   ),
-                        // ),
+                        Text(
+                          widget.booking.farmer!.landSize,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            color: GlobalVariables.primaryColor,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -196,7 +211,8 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                           builder: (ctx) => AlertDialog(
                             title: const Text('Confirm'),
                             content: Text(
-                                'Do you wish to confirm the tractor request for: ${widget.booking.dateExpected}'),
+                              'Do you wish to confirm the tractor request for: ${widget.booking.dateExpected}',
+                            ),
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
@@ -218,6 +234,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                           ),
                         );
                       },
+                      color: GlobalVariables.primaryColor,
                       text: 'Accept Request',
                     )
                   : const SizedBox(
