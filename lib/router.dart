@@ -2,7 +2,6 @@ import 'package:agrofi/auth/screens/step_two_registeration.dart';
 import 'package:agrofi/auth/screens/login_screen.dart';
 import 'package:agrofi/auth/screens/phone_verification_screen.dart';
 import 'package:agrofi/auth/screens/register_screen.dart';
-import 'package:agrofi/auth/screens/registration_stepper.dart';
 import 'package:agrofi/auth/screens/user_type_selection_screen.dart';
 import 'package:agrofi/common/screens/bookings_list_screen.dart';
 import 'package:agrofi/farmer/booking/screens/booking_details_screen.dart';
@@ -114,11 +113,6 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const BookTractorScreen(),
-      );
-    case RegisterStepperScreen.routeName:
-      return MaterialPageRoute(
-        settings: routeSettings,
-        builder: (_) => const RegisterStepperScreen(),
       );
     case BookingDetailsScreen.routeName:
       var booking = routeSettings.arguments as Booking;

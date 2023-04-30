@@ -26,7 +26,7 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
   }
 
   void fetchBookings() async {
-    bookingList = await homeService.fetchBookings(context: context);
+    bookingList = await homeService.fetchActiveBookings(context: context);
     if (mounted) {
       setState(() {});
     }
@@ -44,8 +44,12 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
           )
         : bookingList!.isEmpty
             ? Container(
+                margin: const EdgeInsets.symmetric(
+                  vertical: 7.0,
+                  horizontal: 7.0,
+                ),
                 height: MediaQuery.of(context).size.height * 0.2,
-                width: MediaQuery.of(context).size.width * 0.85,
+                width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   color: GlobalVariables.greyBackGround,
                   borderRadius: BorderRadius.all(
@@ -68,119 +72,89 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   final booking = bookingList![index];
-                  if (booking.status == 1) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          BookingDetailsScreen.routeName,
-                          arguments: bookingList![index],
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0,
-                          vertical: 7.0,
-                        ),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          padding: const EdgeInsets.all(10.0),
-                          height: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(7),
-                            ),
-                            border: Border.all(
-                              color: Colors.black26,
-                              width: 1,
-                            ),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        BookingDetailsScreen.routeName,
+                        arguments: bookingList![index],
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0,
+                        vertical: 7.0,
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        padding: const EdgeInsets.all(10.0),
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(7),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 1,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                const Text(
+                                  "Tractor Owner's Name:",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                Text(
+                                  booking.tractorOwner?.firstName ?? "Hello",
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: GlobalVariables.primaryColor,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              "Date expected: ${booking.dateExpected}",
+                            ),
+                            Text.rich(
+                              TextSpan(
                                 children: [
-                                  const Text(
-                                    "Tractor Owner's Name:",
+                                  const TextSpan(
+                                    text: "Status: ",
                                     style: TextStyle(
+                                      color: Colors.black54,
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 7,
-                                  ),
-                                  Text(
-                                    booking.tractorOwner?.firstName ?? "Hello",
+                                  TextSpan(
+                                    text: booking.status == 1
+                                        ? "Active"
+                                        : "Inactive",
                                     style: const TextStyle(
                                       fontSize: 16,
                                       color: GlobalVariables.primaryColor,
-                                      fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                 ],
                               ),
-                              Text(
-                                "Date expected: ${booking.dateExpected}",
-                              ),
-                              Text.rich(
-                                TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: "Status: ",
-                                      style: TextStyle(
-                                        color: Colors.black54,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: booking.status == 1
-                                          ? "Active"
-                                          : "Inactive",
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: GlobalVariables.primaryColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              // Text('${DateFormat().format(DateTime.fromMillisecondsSinceEpoch(booking.orderedAt))}',
-                              // style: const TextStyle(
-                              //   color: Colors.black54
-                              // ),)
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                    // return Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    //   child: Container(
-                    //     height: MediaQuery.of(context).size.height * 0.1,
-                    //     width: MediaQuery.of(context).size.width * 0.85,
-                    //     decoration: const BoxDecoration(
-                    //       color: GlobalVariables.greyBackGround,
-                    //       borderRadius: BorderRadius.all(
-                    //         Radius.circular(
-                    //           10,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     margin: const EdgeInsets.symmetric(
-                    //       vertical: 10.0,
-                    //     ),
-                    //     child: const Center(
-                    //       child: Text("No active bookings"),
-                    //     ),
-                    //   ),
-                    // );
-                  }
+                    ),
+                  );
                 },
               );
   }

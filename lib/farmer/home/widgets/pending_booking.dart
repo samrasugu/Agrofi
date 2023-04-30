@@ -25,7 +25,7 @@ class _PendingBookingsListViewState extends State<PendingBookingsListView> {
   }
 
   void fetchBookings() async {
-    bookingList = await homeService.fetchBookings(context: context);
+    bookingList = await homeService.fetchPendingBookings(context: context);
     if (mounted) {
       setState(() {});
     }
@@ -42,7 +42,7 @@ class _PendingBookingsListViewState extends State<PendingBookingsListView> {
         : bookingList!.isEmpty
             ? Container(
                 height: MediaQuery.of(context).size.height * 0.2,
-                width: MediaQuery.of(context).size.width * 0.85,
+                width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   color: GlobalVariables.greyBackGround,
                   borderRadius: BorderRadius.all(
@@ -52,7 +52,7 @@ class _PendingBookingsListViewState extends State<PendingBookingsListView> {
                   ),
                 ),
                 margin: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
+                  horizontal: 7.0,
                 ),
                 child: const Center(
                   child: Text(
@@ -70,141 +70,119 @@ class _PendingBookingsListViewState extends State<PendingBookingsListView> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   final booking = bookingList![index];
-                  if (booking.status == 0) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          BookingDetailsScreen.routeName,
-                          arguments: bookingList![index],
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0,
-                          vertical: 7.0,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        BookingDetailsScreen.routeName,
+                        arguments: bookingList![index],
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0,
+                        vertical: 7.0,
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        padding: const EdgeInsets.all(10.0),
+                        height: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(
+                              7,
+                            ),
+                          ),
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 1,
+                          ),
                         ),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          padding: const EdgeInsets.all(10.0),
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(
-                                7,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  const TextSpan(
+                                    text: "Ordered on: ",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const TextSpan(
+                                    text: " ",
+                                  ),
+                                  TextSpan(
+                                    text: DateFormat.yMMMMEEEEd().format(
+                                      DateTime.fromMillisecondsSinceEpoch(
+                                        booking.orderedAt,
+                                      ),
+                                    ),
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: GlobalVariables.primaryColor,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            border: Border.all(
-                              color: Colors.black26,
-                              width: 1,
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  const TextSpan(
+                                    text: "Expected on: ",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  const TextSpan(
+                                    text: " ",
+                                  ),
+                                  TextSpan(
+                                    text: booking.dateExpected,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: GlobalVariables.primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text.rich(
-                                TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: "Ordered on: ",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  const TextSpan(
+                                    text: "Status: ",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black54,
                                     ),
-                                    const TextSpan(
-                                      text: " ",
+                                  ),
+                                  const TextSpan(
+                                    text: " ",
+                                  ),
+                                  TextSpan(
+                                    text: booking.status == 0
+                                        ? "Pending"
+                                        : booking.status == 1
+                                            ? "Accepted"
+                                            : "Rejected",
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: GlobalVariables.primaryColor,
                                     ),
-                                    TextSpan(
-                                      text: DateFormat.yMMMMEEEEd().format(
-                                        DateTime.fromMillisecondsSinceEpoch(
-                                          booking.orderedAt,
-                                        ),
-                                      ),
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: GlobalVariables.primaryColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Text.rich(
-                                TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: "Expected on: ",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    const TextSpan(
-                                      text: " ",
-                                    ),
-                                    TextSpan(
-                                      text: booking.dateExpected,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: GlobalVariables.primaryColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Text.rich(
-                                TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: "Status: ",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.black54,
-                                      ),
-                                    ),
-                                    const TextSpan(
-                                      text: " ",
-                                    ),
-                                    TextSpan(
-                                      text: booking.status == 0
-                                          ? "Pending"
-                                          : booking.status == 1
-                                              ? "Accepted"
-                                              : "Rejected",
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: GlobalVariables.primaryColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                    // return Container(
-                    //   height: MediaQuery.of(context).size.height * 0.1,
-                    //   width: MediaQuery.of(context).size.width * 0.85,
-                    //   decoration: const BoxDecoration(
-                    //     color: GlobalVariables.greyBackGround,
-                    //     borderRadius: BorderRadius.all(
-                    //       Radius.circular(
-                    //         10,
-                    //       ),
-                    //     ),
-                    //   ),
-                    //   margin: const EdgeInsets.symmetric(
-                    //     horizontal: 10.0,
-                    //   ),
-                    //   child: const Center(
-                    //     child: Text("No pendig bookings"),
-                    //   ),
-                    // );
-                  }
+                    ),
+                  );
                 },
               );
   }

@@ -19,16 +19,8 @@ class AuthService {
     required BuildContext context,
     required String firstName,
     required String lastName,
-    // required String idNumber,
     required String phoneNumber,
     required String pin,
-    // required double latitude,
-    // required double longitude,
-    // required String useType,
-    // required String county,
-    // required String subCounty,
-    // required String village,
-    // required String landSize,
   }) async {
     try {
       UserModel user = UserModel(
@@ -89,7 +81,6 @@ class AuthService {
                 (route) => false,
               );
             }
-            // }
           });
     } catch (e) {
       showSnackBar(context, e.toString());
@@ -318,7 +309,7 @@ class AuthService {
       if (response == true) {
         // get user data
         http.Response userRes = await http.get(
-          Uri.parse('$uri/'),
+          Uri.parse('$uri/getuser'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'x-auth-token': token

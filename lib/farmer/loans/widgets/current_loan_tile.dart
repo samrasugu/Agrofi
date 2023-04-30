@@ -104,7 +104,7 @@ class _CurrentLoanTileState extends State<CurrentLoanTile> {
                 children: [
                   TextSpan(
                     text: DateFormat.yMMMd().format(
-                      DateTime.fromMillisecondsSinceEpoch(loan.issueDate),
+                      DateTime.fromMillisecondsSinceEpoch(loan.issueDate!),
                     ),
                     style: const TextStyle(
                       fontSize: 16,

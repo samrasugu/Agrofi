@@ -356,6 +356,7 @@ class _StepTwoRegistrationState extends State<StepTwoRegistration> {
                             const SizedBox(
                               height: 20,
                             ),
+                            // location consent text
                             CustomButton(
                               text: 'Submit',
                               onTap: () {
@@ -369,7 +370,39 @@ class _StepTwoRegistrationState extends State<StepTwoRegistration> {
                                       countybool = false;
                                     });
                                     // send data to server
-                                    _registerFarmer();
+                                    // show dialog for location consent
+                                    // if user accepts, register user
+                                    // else, show dialog to select county
+                                    // and register user
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Location Consent'),
+                                          content: const Text(
+                                            'This app requires your location in order to function and offer service to you. Do you consent to share your location?',
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                // focus scope
+                                                // FocusScope.of(context)
+                                                //     .unfocus();
+                                                _registerFarmer();
+                                              },
+                                              child: const Text('Yes'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text('No'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   }
                                 }
                               },
@@ -608,9 +641,35 @@ class _StepTwoRegistrationState extends State<StepTwoRegistration> {
                                     setState(() {
                                       countybool = false;
                                     });
-                                    print("Validated");
-                                    // send data to server
-                                    _registerTactorOwner();
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Location Consent'),
+                                          content: const Text(
+                                            'This app requires your location in order to function and offer service to you. Do you consent to share your location?',
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                // focus scope
+                                                // FocusScope.of(context)
+                                                //     .unfocus();
+                                                _registerTactorOwner();
+                                              },
+                                              child: const Text('Yes'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text('No'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   }
                                 }
                               },

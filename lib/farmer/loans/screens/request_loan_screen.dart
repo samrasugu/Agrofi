@@ -51,20 +51,38 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                     ),
                   ),
                   const Text(
-                    "1. You must have been approved for existance and correct information.",
+                    "1. You must have been approved, verified and have correct information.",
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
                   const Text(
-                    "2. You are required to pay an initial fee of Ksh. 4700 which will contribute towards and will be added to your allocated loan.",
+                    "2. You are required to pay an initial fee which will contribute towards and will be added to your allocated loan.",
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
 
                   const SizedBox(
-                    height: 20,
+                    height: 7,
+                  ),
+                   // consent checkboxes
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("I agree to terms and conditions"),
+                      Checkbox(
+                        value: termsConsent,
+                        onChanged: (value) {
+                          setState(() {
+                            termsConsent = value!;
+                          });
+                        },
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 7,
                   ),
                   CustomButton(
                     text: "Request for loan",
@@ -75,7 +93,7 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                         builder: (ctx) => AlertDialog(
                           title: const Text('Confirm Loan Request'),
                           content: const Text(
-                            'You will receive a notification. Enter your PIN to pay the initial Ksh.4700',
+                            'You will receive a notification. Enter your PIN to pay the initial fee',
                           ),
                           actions: <Widget>[
                             TextButton(
@@ -108,23 +126,6 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
                       );
                     },
                   ),
-                  // consent checkboxes
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("I agree to terms and conditions"),
-                        Checkbox(
-                            value: termsConsent,
-                            onChanged: (value) {
-                              setState(() {
-                                termsConsent = value!;
-                              });
-                            })
-                      ],
-                    ),
-                  )
                 ],
               )
             ],

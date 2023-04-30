@@ -54,7 +54,7 @@ class AccountServices {
                   ),
                 ),
               );
-            userProvider.setLoanBalance(loan.balance);
+            userProvider.setLoanBalance(loan.balance!);
           },
         );
       }

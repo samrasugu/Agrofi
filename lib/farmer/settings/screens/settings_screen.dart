@@ -98,34 +98,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   );
                 },
               ),
+              // CustomListTile(
+              //   leadingIcon: Icons.list,
+              //   trailingIcon: Icons.arrow_forward_ios_rounded,
+              //   title: "My Bookings",
+              //   onTap: () {},
+              // ),
               CustomListTile(
                 leadingIcon: Icons.list,
                 trailingIcon: Icons.arrow_forward_ios_rounded,
-                title: "My Bookings",
-                onTap: () {},
+                title: "Transaction History",
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    TransactionsListScreen.routeName,
+                    arguments: {},
+                  );
+                },
               ),
+              // CustomListTile(
+              //   leadingIcon: Icons.help_outline_rounded,
+              //   trailingIcon: Icons.arrow_forward_ios_rounded,
+              //   title: "Help",
+              //   onTap: () {},
+              // ),
               CustomListTile(
-                  leadingIcon: Icons.list,
-                  trailingIcon: Icons.arrow_forward_ios_rounded,
-                  title: "Transaction History",
-                  onTap: () {
-                    Navigator.of(context).pushNamed(
-                      TransactionsListScreen.routeName,
-                      arguments: {},
-                    );
-                  }),
-              CustomListTile(
-                  leadingIcon: Icons.help_outline_rounded,
-                  trailingIcon: Icons.arrow_forward_ios_rounded,
-                  title: "Help",
-                  onTap: () {}),
-              CustomListTile(
-                  leadingIcon: Icons.logout_rounded,
-                  trailingIcon: Icons.arrow_forward_ios_rounded,
-                  title: "Logout",
-                  onTap: () {
-                    AccountServices().signOut(context);
-                  })
+                leadingIcon: Icons.logout_rounded,
+                trailingIcon: Icons.arrow_forward_ios_rounded,
+                title: "Logout",
+                onTap: () {
+                  AccountServices().signOut(context);
+                },
+              )
             ],
           )
         ],

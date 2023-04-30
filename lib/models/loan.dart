@@ -1,35 +1,35 @@
 import 'dart:convert';
 
 class Loan {
-  final String id;
-  final String userID;
-  final String voucherId;
-  final String activationData;
-  final int requestDate;
-  final int issueDate;
-  final int dueDate;
-  final double principal;
-  final double balance;
-  final double amount;
-  final bool isCurrent;
-  final String status;
+  final String? id;
+  final String? userID;
+  final String? voucherId;
+  final String? activationData;
+  final int? requestDate;
+  final int? issueDate;
+  final int? dueDate;
+  final double? principal;
+  final double? balance;
+  final double? amount;
+  final bool? isCurrent;
+  final String? status;
 
   Loan({
-    required this.id,
-    required this.userID,
-    required this.voucherId,
-    required this.activationData,
-    required this.requestDate,
-    required this.issueDate,
-    required this.dueDate,
-    required this.principal,
-    required this.balance,
-    required this.amount,
-    required this.isCurrent,
-    required this.status,
+     this.id,
+     this.userID,
+     this.voucherId,
+     this.activationData,
+     this.requestDate,
+     this.issueDate,
+     this.dueDate,
+     this.principal,
+     this.balance,
+     this.amount,
+     this.isCurrent,
+     this.status,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic>? toMap() {
     return {
       'id': id,
       'userID': userID,
@@ -46,20 +46,20 @@ class Loan {
     };
   }
 
-  factory Loan.fromMap(Map<String, dynamic> map) {
+  factory Loan.fromMap(Map<String, dynamic>? map) {
     return Loan(
-      id: map['_id'] ?? '',
-      userID: map['userID'] ?? '',
-      voucherId: map['voucherId'] ?? '',
-      activationData: map['activationData'] ?? '',
-      requestDate: map['requestDate'] ?? 0,
-      issueDate: map['issueDate'] ?? 0,
-      dueDate: map['dueDate'] ?? 0,
-      principal: (map['principal'] ?? 0).toDouble(),
-      balance: (map['balance'] ?? 0).toDouble(),
-      amount: (map['amount'] ?? 0).toDouble(),
-      isCurrent: map['isCurrent'] ?? false,
-      status: map['status'] ?? '',
+      id: map?['_id'] ?? '',
+      userID: map?['userID'] ?? '',
+      voucherId: map?['voucherId'] ?? '',
+      activationData: map?['activationData'] ?? '',
+      requestDate: map?['requestDate'] ?? 0,
+      issueDate: map?['issueDate'] ?? 0,
+      dueDate: map?['dueDate'] ?? 0,
+      principal: (map?['principal'] ?? 0).toDouble(),
+      balance: (map?['balance'] ?? 0).toDouble(),
+      amount: (map?['amount'] ?? 0).toDouble(),
+      isCurrent: map?['isCurrent'] ?? false,
+      status: map?['status'] ?? '',
     );
   }
 

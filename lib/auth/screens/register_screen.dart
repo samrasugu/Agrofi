@@ -5,7 +5,6 @@ import 'package:agrofi/common/widgets/custom_textfield.dart';
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/models/user.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class RegisterScreen extends StatefulWidget {
