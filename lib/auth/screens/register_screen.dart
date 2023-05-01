@@ -8,6 +8,7 @@ import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String routeName = '/register-screen';
@@ -47,6 +48,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
     idNumberController.dispose();
     pinNumberController.dispose();
     confirmPinNumberController.dispose();
+  }
+
+  // url launcher for privacy policy
+  final Uri policyurl = Uri.parse('https://www.reds.co.ke/privacy-policy');
+  Future<void> _launchURL() async {
+    if (await canLaunchUrl(policyurl)) {
+      await launchUrl(policyurl);
+    } else {
+      throw 'Could not launch $policyurl';
+    }
+  }
+
+  // url launcher for terms and conditions
+  final Uri termsurl = Uri.parse('https://www.reds.co.ke/terms-and-conditions');
+  Future<void> _launchURL2() async {
+    if (await canLaunchUrl(termsurl)) {
+      await launchUrl(termsurl);
+    } else {
+      throw 'Could not launch $termsurl';
+    }
   }
 
   @override
@@ -288,25 +309,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const Text("By signing up you agree to our"),
-                            // const SizedBox(
-                            //   width: 5,
-                            // ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  LoginScreen.routeName,
-                                );
-                              },
-                              child: const Text(
-                                "terms and privacy policy",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 8.0,
                               ),
-                            )
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      _launchURL2();
+                                    },
+                                    child: const Text(
+                                      'Terms and Conditions',
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(
+                                    ' and ',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      _launchURL();
+                                    },
+                                    child: const Text(
+                                      'Privacy Policy',
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),

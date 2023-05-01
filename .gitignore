@@ -45,3 +45,6 @@ app.*.map.json
 
 # ignore server
 /server
+
+# ignore keystore
+key.properties
