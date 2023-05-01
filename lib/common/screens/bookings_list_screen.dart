@@ -23,7 +23,6 @@ class _BookingsListScreenState extends State<BookingsListScreen> {
             color: Colors.white,
           ),
         ),
-        centerTitle: true,
         elevation: 0,
       ),
       body: const SingleChildScrollView(

@@ -26,7 +26,7 @@ class _ActiveBookingTileState extends State<ActiveBookingTile> {
   }
 
   void fetchRequests() async {
-    bookingList = await homeService.fetchBookings(context: context);
+    bookingList = await homeService.fetchActiveBookings(context: context);
     if (mounted) {
       setState(() {});
     }

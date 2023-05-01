@@ -45,6 +45,41 @@ class HomeService {
   }
 
   // fetch active bookings
+  Future<List<Booking>> fetchActiveBookings({required BuildContext context}) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Booking> bookingsList = [];
+    try {
+      http.Response res = await http.get(
+        Uri.parse('$uri/api/tractorOwner/activebookings'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+      );
+
+      if (context.mounted) {}
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          for (int i = 0; i < jsonDecode(res.body).length; i++) {
+            bookingsList.add(
+              Booking.fromJson(
+                jsonEncode(
+                  jsonDecode(res.body)[i],
+                ),
+              ),
+            );
+          }
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+    return bookingsList;
+  }
+
+  // fetch bookings
   Future<List<Booking>> fetchBookings({required BuildContext context}) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Booking> bookingsList = [];
@@ -109,14 +144,15 @@ class HomeService {
         avail = "Offline: You cannot receive tractor requests";
       }
 
-      if (context.mounted) {}
-      httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () {
-          showSnackBar(context, "Status changed to $avail");
-        },
-      );
+      if (context.mounted) {
+        httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, "Status changed to $avail");
+          },
+        );
+      }
     } catch (e) {
       showSnackBar(context, e.toString());
     }

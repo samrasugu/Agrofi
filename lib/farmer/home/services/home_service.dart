@@ -25,8 +25,8 @@ class HomeService {
         },
       );
 
-      if (context.mounted) {}
-      httpErrorHandle(
+      if (context.mounted) {
+        httpErrorHandle(
           response: res,
           context: context,
           onSuccess: () {
@@ -39,7 +39,9 @@ class HomeService {
                 ),
               );
             }
-          });
+          },
+        );
+      }
     } catch (e) {
       showSnackBar(context, e.toString());
     }
