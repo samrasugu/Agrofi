@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "653200103053-o89m0fnqdme3ief2b5ge94fvndvkqk3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "farm.agrofi.agrofi",
+            "certificate_hash": "e4aa0e36b937e10b22e7fa67be3a2cfc1ee327fb"
+          }
+        },
+        {
           "client_id": "653200103053-h5c2d7kiceusst3iljlogonjbooc9gpk.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -31,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "653200103053-ukdimbs6a9lnfm5hhglbl1b8arrnjf4g.apps.googleusercontent.com",
+              "client_id": "653200103053-ca8o892i9a4a5790gm4iiai5n8okm8u3.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "africa.agrofi.agrofi"
+                "bundle_id": "farm.agrofi.agrofi"
               }
             }
           ]
