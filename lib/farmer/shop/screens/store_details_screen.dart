@@ -248,14 +248,10 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
                                     Container(
                                       height: 125,
                                       width: double.infinity,
-                                      decoration: const BoxDecoration(
-                                        // borderRadius: BorderRadius.only(
-                                        //   topLeft: Radius.circular(10),
-                                        //   topRight: Radius.circular(10),
-                                        // ),
+                                      decoration: BoxDecoration(
                                         image: DecorationImage(
                                           image: NetworkImage(
-                                            'https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=600',
+                                            product.productImages.first,
                                           ),
                                           fit: BoxFit.cover,
                                         ),

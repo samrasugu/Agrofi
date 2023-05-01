@@ -35,19 +35,19 @@ class _TractorOwnerHomeScreenState extends State<TractorOwnerHomeScreen> {
 
   final HomeService homeService = HomeService();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   checkForUpdate();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    checkForUpdate();
+  }
 
-  // void checkForUpdate() async {
-  //   AppUpdateInfo appUpdateInfo = await InAppUpdate.checkForUpdate();
-  //   if (appUpdateInfo.updateAvailability ==
-  //       UpdateAvailability.updateAvailable) {
-  //     await InAppUpdate.performImmediateUpdate();
-  //   }
-  // }
+  void checkForUpdate() async {
+    AppUpdateInfo appUpdateInfo = await InAppUpdate.checkForUpdate();
+    if (appUpdateInfo.updateAvailability ==
+        UpdateAvailability.updateAvailable) {
+      await InAppUpdate.performImmediateUpdate();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
