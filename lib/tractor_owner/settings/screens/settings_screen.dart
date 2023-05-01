@@ -3,7 +3,7 @@ import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/transactions/screens/transactions_list_screen.dart';
 import 'package:agrofi/tractor_owner/settings/screens/account_screen.dart';
 import 'package:agrofi/tractor_owner/settings/services/account_services.dart';
-import 'package:agrofi/tractor_owner/transactions/screens/transactions_home_screen.dart';
+// import 'package:agrofi/tractor_owner/transactions/screens/transactions_home_screen.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

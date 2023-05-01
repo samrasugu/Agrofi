@@ -7,6 +7,7 @@ import 'package:agrofi/tractor_owner/home/widgets/total_earnings.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:provider/provider.dart';
 
 class TractorOwnerHomeScreen extends StatefulWidget {
@@ -33,6 +34,20 @@ class _TractorOwnerHomeScreenState extends State<TractorOwnerHomeScreen> {
   String isOnline = 'Offline';
 
   final HomeService homeService = HomeService();
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   checkForUpdate();
+  // }
+
+  // void checkForUpdate() async {
+  //   AppUpdateInfo appUpdateInfo = await InAppUpdate.checkForUpdate();
+  //   if (appUpdateInfo.updateAvailability ==
+  //       UpdateAvailability.updateAvailable) {
+  //     await InAppUpdate.performImmediateUpdate();
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -102,9 +117,8 @@ class _TractorOwnerHomeScreenState extends State<TractorOwnerHomeScreen> {
                       style: const TextStyle(fontSize: 20),
                       children: [
                         TextSpan(
-                          text: user.isOnline == false
-                              ? "Offline\n"
-                              : "Online\n",
+                          text:
+                              user.isOnline == false ? "Offline\n" : "Online\n",
                           style: TextStyle(
                             fontSize: 17,
                             color: user.isOnline == false

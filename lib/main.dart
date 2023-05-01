@@ -33,13 +33,13 @@ void main() async {
   ));
 
   void notificationTapBackground(NotificationResponse notificationResponse) {
-    print(
-        "notification(${notificationResponse.id}) tapped: ${notificationResponse.actionId} with ${notificationResponse.payload}");
+    // print(
+    //     "notification(${notificationResponse.id}) tapped: ${notificationResponse.actionId} with ${notificationResponse.payload}");
     if (notificationResponse.actionId == "FLUTTER_NOTIFICATION_CLICK") {
-      print("notification tapped");
+      // print("notification tapped");
     }
     if (notificationResponse.input?.isNotEmpty ?? false) {
-      print("notification tapped with input: ${notificationResponse.input}");
+      // print("notification tapped with input: ${notificationResponse.input}");
     }
   }
 

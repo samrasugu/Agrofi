@@ -14,6 +14,38 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
+  // check phone number exists
+  Future<bool> checkPhoneNumberExists({
+    required BuildContext context,
+    required String phoneNumber,
+  }) async {
+    try {
+      http.Response res = await http.post(
+        Uri.parse('$uri/api/user/check-phone-number-exists'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          {
+            'phoneNumber': phoneNumber,
+          },
+        ),
+      );
+
+      if (res.statusCode == 200) {
+        return res.body == 'true' && true;
+      } else {
+        if (context.mounted) {
+          showSnackBar(context, jsonDecode(res.body)['message']);
+        }
+        return false;
+      }
+    } catch (e) {
+      showSnackBar(context, e.toString());
+      return false;
+    }
+  }
+
   // signup user
   Future<void> signUpUser({
     required BuildContext context,
@@ -60,28 +92,29 @@ class AuthService {
       if (context.mounted) {}
 
       httpErrorHandle(
-          response: res,
-          context: context,
-          onSuccess: () async {
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-            if (context.mounted) {}
-            Provider.of<UserProvider>(context, listen: false).setUser(res.body);
-            await prefs.setString(
-              'x-auth-token',
-              jsonDecode(res.body)['token'],
+        response: res,
+        context: context,
+        onSuccess: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          if (context.mounted) {}
+          Provider.of<UserProvider>(context, listen: false).setUser(res.body);
+          await prefs.setString(
+            'x-auth-token',
+            jsonDecode(res.body)['token'],
+          );
+          if (context.mounted) {
+            showSnackBar(context, "Success! your account has been created");
+          }
+          // redirect to user type selection screen
+          if (context.mounted) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              UserTypeSelectionScreen.routeName,
+              (route) => false,
             );
-            if (context.mounted) {
-              showSnackBar(context, "Success! your account has been created");
-            }
-            // redirect to user type selection screen
-            if (context.mounted) {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                UserTypeSelectionScreen.routeName,
-                (route) => false,
-              );
-            }
-          });
+          }
+        },
+      );
     } catch (e) {
       showSnackBar(context, e.toString());
     }
@@ -228,7 +261,11 @@ class AuthService {
     try {
       http.Response res = await http.post(
         Uri.parse('$uri/api/user/signin'),
-        body: jsonEncode({'phoneNumber': phoneNumber, 'pin': pin, 'deviceToken': deviceToken}),
+        body: jsonEncode({
+          'phoneNumber': phoneNumber,
+          'pin': pin,
+          'deviceToken': deviceToken
+        }),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

@@ -1,4 +1,3 @@
-import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/shop/screens/store_details_screen.dart';
 import 'package:agrofi/farmer/shop/services/shop_services.dart';
 import 'package:agrofi/models/store.dart';

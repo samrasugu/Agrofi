@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:agrofi/common/widgets/snack_bar.dart';
 import 'package:agrofi/constants/error_handling.dart';
 import 'package:agrofi/constants/global_variables.dart';
-import 'package:agrofi/farmer/home/screens/farmer_bottom_bar_screen.dart';
-import 'package:agrofi/farmer/shop/screens/order_details_screen.dart';
 import 'package:agrofi/farmer/shop/screens/order_successful_screen.dart';
 import 'package:agrofi/models/order.dart';
 import 'package:agrofi/models/product.dart';

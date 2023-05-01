@@ -1,6 +1,5 @@
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/shop/widgets/order_list_tile.dart';
-import 'package:agrofi/farmer/shop/widgets/single_product_card.dart';
 import 'package:flutter/material.dart';
 
 class OrdersScreen extends StatefulWidget {

@@ -2,9 +2,7 @@ import 'package:agrofi/common/widgets/custom_button.dart';
 import 'package:agrofi/common/widgets/snack_bar.dart';
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/loans/services/loan_service.dart';
-import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class RequestLoanScreen extends StatefulWidget {
   static const String routeName = '/request-loan';
@@ -22,7 +20,6 @@ class _RequestLoanScreenState extends State<RequestLoanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context, listen: false).user;
     return Scaffold(
       appBar: AppBar(
         title: const Text(

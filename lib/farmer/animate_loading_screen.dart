@@ -1,6 +1,4 @@
-import 'package:agrofi/constants/global_variables.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class AnimationLoadingScreen extends StatelessWidget {

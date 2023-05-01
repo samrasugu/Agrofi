@@ -4,7 +4,7 @@ import 'package:agrofi/farmer/shop/widgets/stores_list.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:badges/badges.dart' as Badge;
+import 'package:badges/badges.dart' as badge;
 
 class ShopHomeScreen extends StatefulWidget {
   static const String routeName = "/shop-home-screen";
@@ -82,10 +82,10 @@ class _ShopHomeScreenState extends State<ShopHomeScreen> {
                     color: GlobalVariables.primaryColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Badge.Badge(
+                  child: badge.Badge(
                     badgeContent: Text(user.cart.length.toString()),
-                    position: Badge.BadgePosition.topEnd(),
-                    badgeStyle: const Badge.BadgeStyle(
+                    position: badge.BadgePosition.topEnd(),
+                    badgeStyle: const badge.BadgeStyle(
                       badgeColor: Colors.white,
                       elevation: 4,
                       padding: EdgeInsets.all(4),

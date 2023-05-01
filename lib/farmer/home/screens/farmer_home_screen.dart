@@ -1,5 +1,3 @@
-import 'package:agrofi/auth/screens/user_type_selection_screen.dart';
-import 'package:agrofi/common/widgets/custom_button.dart';
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/home/widgets/active_booking_tile.dart';
 import 'package:agrofi/farmer/home/widgets/custom_large_button.dart';
@@ -8,10 +6,9 @@ import 'package:agrofi/farmer/loans/screens/request_loan_screen.dart';
 import 'package:agrofi/farmer/tractor_bookings/screens/book_tractor_screen.dart';
 import 'package:agrofi/farmer/home/widgets/loan_balance.dart';
 import 'package:agrofi/common/notifications/screens/notifications_screen.dart';
-import 'package:agrofi/farmer/settings/screens/settings_screen.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:provider/provider.dart';
 
 class FarmerHomeScreen extends StatefulWidget {
@@ -33,6 +30,20 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
     }
     return 'Good evening';
   }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   checkForUpdate();
+  // }
+
+  // void checkForUpdate() async {
+  //   AppUpdateInfo appUpdateInfo = await InAppUpdate.checkForUpdate();
+  //   if (appUpdateInfo.updateAvailability ==
+  //       UpdateAvailability.updateAvailable) {
+  //     await InAppUpdate.performImmediateUpdate();
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

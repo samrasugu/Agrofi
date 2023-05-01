@@ -1,5 +1,4 @@
 import 'package:agrofi/common/widgets/custom_button.dart';
-import 'package:agrofi/common/widgets/snack_bar.dart';
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/tractor_bookings/services/tractor_booking_services.dart';
 import 'package:agrofi/models/booking.dart';
@@ -22,6 +21,7 @@ class BookingDetailsScreen extends StatefulWidget {
 class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
   int currentStep = 0;
 
+  // ignore: unused_field
   bool _hasCallSupport = false;
 
   // final BookingService bookingService = BookingService();

@@ -1,7 +1,6 @@
 import 'package:agrofi/common/widgets/custom_button.dart';
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/shop/screens/change_address_screen.dart';
-import 'package:agrofi/farmer/shop/screens/order_successful_screen.dart';
 import 'package:agrofi/farmer/shop/services/shop_services.dart';
 import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';

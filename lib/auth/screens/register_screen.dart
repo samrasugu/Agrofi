@@ -1,7 +1,9 @@
 import 'package:agrofi/auth/screens/login_screen.dart';
 import 'package:agrofi/auth/screens/phone_verification_screen.dart';
+import 'package:agrofi/auth/services/auth_service.dart';
 import 'package:agrofi/common/widgets/custom_button.dart';
 import 'package:agrofi/common/widgets/custom_textfield.dart';
+import 'package:agrofi/common/widgets/snack_bar.dart';
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/models/user.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController pinNumberController = TextEditingController();
   final TextEditingController confirmPinNumberController =
       TextEditingController();
+
+  final AuthService _authService = AuthService();
 
   String? phoneNumber;
 
@@ -311,7 +315,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: CustomButton(
                           text: "Register",
                           color: GlobalVariables.primaryColor,
-                          onTap: () {
+                          onTap: () async {
                             if ((phoneNumber != null || phoneNumber != '') &&
                                 _signUpFormKey.currentState!.validate()) {
                               if (pinNumberController.text ==
@@ -341,11 +345,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   token: '',
                                   cart: [],
                                 );
-                                // print(user.phoneNumber);
-                                Navigator.of(context).pushNamed(
-                                  PhoneVerificationScreen.routeName,
-                                  arguments: user,
+
+                                // check if user exists
+                                final userExists =
+                                    await _authService.checkPhoneNumberExists(
+                                  context: context,
+                                  phoneNumber: phoneNumber!,
                                 );
+                                if (userExists) {
+                                  if (mounted) {
+                                    showSnackBar(
+                                      context,
+                                      'User with this phone Number already exists',
+                                    );
+                                  }
+                                } else {
+                                  if (mounted) {
+                                    Navigator.of(context).pushNamed(
+                                      PhoneVerificationScreen.routeName,
+                                      arguments: user,
+                                    );
+                                  }
+                                }
                               } else {
                                 // show pins do not match error
                               }

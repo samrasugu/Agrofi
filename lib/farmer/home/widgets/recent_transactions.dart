@@ -1,10 +1,8 @@
 import 'package:agrofi/constants/global_variables.dart';
 import 'package:agrofi/farmer/settings/services/account_services.dart';
 import 'package:agrofi/models/transaction.dart';
-import 'package:agrofi/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class RecentTransactions extends StatefulWidget {
   const RecentTransactions({super.key});
@@ -42,7 +40,6 @@ class _RecentTransactionsState extends State<RecentTransactions> {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context).user;
     return transactions == null
         ? const Center(
             child: CircularProgressIndicator(
